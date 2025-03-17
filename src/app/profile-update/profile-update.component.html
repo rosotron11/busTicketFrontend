@@ -1,0 +1,8 @@
+<form [formGroup]="updateForm" (ngSubmit)="sendSignalforUpdate()">
+    <input type="number" name="id" formControlName="id" hidden>
+    <input type="text" placeholder="username" name="username" formControlName="username">
+    <input type="email" placeholder="email" formControlName="email">
+    Conductor: <input type="radio" value="conductor" formControlName="roles">
+    Passenger: <input type="radio" value="passenger" formControlName="roles">
+    <button type="submit">Update</button>
+</form>

@@ -1,0 +1,32 @@
+<div>
+    <table>
+    <tr>
+        <th>Bus Number</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Time Of Boarding</th>
+        <th>Time of Dropping</th>
+        <th>Date of Journey</th>
+        <th>Seats</th>
+        <th>Conductor</th>
+        <th>Actions</th>
+    </tr>
+    @for (bus of buses; track $index) {
+        <tr>
+            <td>{{bus.busNumber}}</td>
+            <td>{{bus.source}}</td>
+            <td>{{bus.destination}}</td>
+            <td>{{bus.timeOfBoarding}}</td>
+            <td>{{bus.timeOfDropping}}</td>
+            <td>{{bus.dateOfJourney}}</td>
+            <td>{{bus.seats}}</td>
+            <td>{{bus.conductor.id}}</td>
+            <td><button type="submit" (click)="deleteBus(bus)">Delete</button></td>
+            <td><button type="submit" (click)="bookBus(bus)">Book</button></td>
+        </tr>
+    }
+    </table>
+</div>
+@if (activeBooking) {<app-booking [activeBus]="activeBus"></app-booking>}
+
+ 

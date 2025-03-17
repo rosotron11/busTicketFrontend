@@ -1,0 +1,13 @@
+<div>
+    <form [formGroup]="busRegistration" (ngSubmit)="submitForm()">
+        <input type="text" placeholder="Bus Number" formControlName="busNumber">
+        <input type="text" placeholder="Source" formControlName="source">
+        <input type="text" placeholder="Destination" formControlName="destination">
+        <input type="time" placeholder="Time of Boarding" formControlName="timeOfBoarding">
+        <input type="time" placeholder="Time of Dropping" formControlName="timeOfDropping">
+        <input type="date" placeholder="Date of Journey" formControlName="dateOfJourney">
+        <input type="number" placeholder="seats" formControlName="seats">
+        <input type="number" placeholder="conductor" formControlName="conductor" hidden>
+        <button type="submit">Add a bus</button>
+    </form>
+</div>

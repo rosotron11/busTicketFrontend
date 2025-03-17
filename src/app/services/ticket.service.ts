@@ -1,0 +1,36 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { tick } from '@angular/core/testing';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TicketService {
+
+  constructor(private http:HttpClient) { }
+
+  backend= "http://localhost:8080/tickets"
+  
+    getTicket()
+    {
+      return this.http.get<any[]>(this.backend);
+    }
+
+    deleteTicket(id:number)
+    {
+      return this.http.delete(`${this.backend}/${id}`,{responseType:'text'})
+      .subscribe((res:any)=>
+      {
+        console.log(res)
+      })
+    }
+    bookTicket(ticket:any)
+    {
+      console.log(ticket)
+      return this.http.post(this.backend,ticket,{responseType:"text"}).subscribe(
+        (res:any)=>{
+          console.log(res)
+        }
+      )
+    }
+}

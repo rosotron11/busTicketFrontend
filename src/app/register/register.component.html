@@ -1,0 +1,13 @@
+<form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+    <input type="text" placeholder="username" name="username" formControlName="username">
+    <input type="password" placeholder="password" name="password" formControlName="password">
+    <input type="email" placeholder="email" formControlName="email">
+    Conductor: <input type="radio" value="conductor" formControlName="roles">
+    Passenger: <input type="radio" value="passenger" formControlName="roles">
+    <button type="submit">Register</button>
+</form>
+<div>
+    <p>Already have an account
+        <button (click)="oldLogin()">Login</button>
+    </p>
+</div>

@@ -1,0 +1,17 @@
+<div>
+    {{profile.id}}
+    {{profile.username}}
+    {{profile.email}}
+    {{profile.role}}
+    <button (click)="delete(profile.id)">Permanently Close Account</button>
+    <button (click)="showUpdate(profile.id)">Update</button>
+    <button (click)="showChange(profile.id)">Change Password</button>
+</div>
+@if(activeUpdate)
+{
+    <app-profile-update [profile]="profile" (sendForm)="update(profile.id,$event)"></app-profile-update>
+}
+@if(activeChange)
+{
+    <app-profile-change-password (sendForm)="change(profile.id,$event)"></app-profile-change-password>
+}

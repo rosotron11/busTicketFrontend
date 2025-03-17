@@ -1,0 +1,6 @@
+@for (ticket of tickets; track $index) {
+    <li>
+        {{ticket.ticketNumber}}
+        <button (click)="deleteTicket(ticket)">Delete</button>
+    </li>
+}
