@@ -2,13 +2,17 @@
 <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
     <select formControlName="source">
         @for (item of search|async; track $index) {
-            <option [value]="item.location">{{item.location}}</option>
+            <option [value]="item.location"
+                [hidden]="item.location === searchForm.get('destination')?.value">
+            {{item.location}}</option>
         }
     </select>
 
     <select formControlName="destination">
         @for (item of search|async; track $index) {
-            <option [value]="item.location">{{item.location}}</option>
+            <option [value]="item.location"
+                [hidden]="item.location === searchForm.get('source')?.value">
+            {{item.location}}</option>
         }
     </select>
     <input type="date" placeholder="Date of Journey" formControlName="dateOfJourney">

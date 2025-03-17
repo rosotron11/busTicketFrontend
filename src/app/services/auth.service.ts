@@ -16,7 +16,7 @@ export class AuthService {
   }
   logOut()
   {
-    localStorage.setItem('isAuthenticate','false')
+    localStorage.setItem('isAuthenticated','false')
     localStorage.removeItem('userDet')
   }
 }

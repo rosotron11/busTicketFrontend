@@ -9,7 +9,7 @@ import { BusRegistrationComponent } from './bus-registration/bus-registration.co
 import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
-import { authGuard, loginAuthGuard } from './guard/auth.guard';
+import { authGuard, conductorGuard, loginAuthGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
     {
@@ -43,7 +43,7 @@ export const routes: Routes = [
     {
         path:"bus/create",
         component:BusRegistrationComponent,
-        canActivate:[authGuard]
+        canActivate:[authGuard,conductorGuard]
     },
     {
         path:"ticket",
