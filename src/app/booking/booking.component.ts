@@ -1,15 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, NgModule } from '@angular/core';
 import { TicketService } from '../services/ticket.service';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css'
 })
 export class BookingComponent {
   @Input() activeBus:any
-  constructor(private ticketService:TicketService)
+  selectedBoardingPlace: any;
+  selectedDropOffPlace:any
+  constructor(private ticketService:TicketService, private router:Router)
   {
   }
   payBus(bus:any)
@@ -21,8 +25,8 @@ export class BookingComponent {
 
     const ticket = {
       paymentStatus: "paid",
-      source: bus.source,
-      destination: bus.destination,
+      source: this.selectedBoardingPlace,
+      destination: this.selectedDropOffPlace,
       dateOfJourney: bus.dateOfJourney,
       boardingTime: bus.timeOfBoarding,
       passenger: jsonID,
@@ -31,5 +35,6 @@ export class BookingComponent {
 
     console.log(ticket)
     this.ticketService.bookTicket(ticket);
+    this.router.navigateByUrl("/my-ticket")
   }
 }

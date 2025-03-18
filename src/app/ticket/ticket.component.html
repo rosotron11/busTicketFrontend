@@ -1,6 +1,24 @@
+<table>
+    <tr>
+        <th>Ticket Number</th>
+        <th>Bus Number</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Date of Journey</th>
+        <th>Boarding Time</th>
+        <th>Payment Status</th>
+        <th>Actions</th>
+    </tr>
 @for (ticket of tickets; track $index) {
-    <li>
-        {{ticket.ticketNumber}}
-        <button (click)="deleteTicket(ticket)">Delete</button>
-    </li>
+        <tr>
+            <td>{{ticket.ticketNumber}}</td>   
+            <td>{{ticket.bus.busNumber}}</td>
+            <td>{{ticket.source}}</td>
+            <td>{{ticket.destination}}</td>
+            <td>{{ticket.dateOfJourney}}</td>
+            <td>{{ticket.boardingTime}}</td>
+            <td>{{ticket.paymentStatus}}</td>
+            <td><button (click)="deleteTicket(ticket)">Cancel Ticket</button></td>
+        </tr>
 }
+</table>

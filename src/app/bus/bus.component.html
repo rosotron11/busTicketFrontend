@@ -20,8 +20,14 @@
             <td>{{bus.timeOfDropping}}</td>
             <td>{{bus.dateOfJourney}}</td>
             <td>{{bus.seats}}</td>
-            <td>{{bus.conductor.id}}</td>
-            <td><button type="submit" (click)="deleteBus(bus)">Delete</button></td>
+            <td>@if(bus.conductor.id==null)
+                {
+                    nothing
+                }
+                @else {
+                    {{bus.conductor.username}}
+                }
+            </td>
             <td><button type="submit" (click)="bookBus(bus)">Book</button></td>
         </tr>
     }

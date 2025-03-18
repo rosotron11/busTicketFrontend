@@ -7,6 +7,27 @@
         <input type="time" placeholder="Time of Dropping" formControlName="timeOfDropping">
         <input type="date" placeholder="Date of Journey" formControlName="dateOfJourney">
         <input type="number" placeholder="seats" formControlName="seats">
+        <div formArrayName="boardingPlaces">
+            @for (place of boardingPlaces.controls; track $index) 
+            {
+                <input [formControlName]="$index" placeholder="Boarding Place">
+                @if (boardingPlaces.length>1) {
+                    <button (click)="removeBoardingPlace($index)">-</button>
+                }
+            }
+            <button (click)="addBoardingPlace()">+</button>
+        </div>
+
+        <div formArrayName="dropOffPlaces">
+            @for (place of dropOffPlaces.controls; track $index) 
+            {
+                <input [formControlName]="$index" placeholder="Drop Off Place">
+                @if (dropOffPlaces.length>1) {
+                    <button (click)="removeDropOffPlace($index)">-</button>
+                }
+            }
+            <button (click)="addDropOffPlace()">+</button>
+        </div>
         <input type="number" placeholder="conductor" formControlName="conductor" hidden>
         <button type="submit">Add a bus</button>
     </form>

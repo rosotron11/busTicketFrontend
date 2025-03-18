@@ -10,6 +10,8 @@ import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
 import { authGuard, conductorGuard, loginAuthGuard } from './guard/auth.guard';
+import { MyBusComponent } from './my-bus/my-bus.component';
+import { BusPassengersComponent } from './bus-passengers/bus-passengers.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +38,11 @@ export const routes: Routes = [
         component:BusComponent
     },
     {
+        path:"my-bus",
+        component:MyBusComponent,
+        canActivate:[authGuard,conductorGuard]
+    },
+    {
         path:"bus/:source/:destination/:doj",
         component:BusComponent,
         canActivate:[authGuard]
@@ -46,7 +53,7 @@ export const routes: Routes = [
         canActivate:[authGuard,conductorGuard]
     },
     {
-        path:"ticket",
+        path:"my-ticket",
         component:TicketComponent,
         canActivate:[authGuard]
     },
@@ -54,6 +61,11 @@ export const routes: Routes = [
         path:"search",
         component:SearchComponent
     },
+    // {
+    //     path:"bus/passengers",
+    //     component:BusPassengersComponent,
+    //     canActivate:[authGuard,conductorGuard]
+    // },
     {
         path:"profile",
         component:ProfileComponent,

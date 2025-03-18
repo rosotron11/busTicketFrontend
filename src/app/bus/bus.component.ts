@@ -24,7 +24,7 @@ export class BusComponent implements OnInit{
     let source:any, destination:any, doj:any
     if(myUrl=="/bus")
     {
-      this.fetchData();
+      this.router.navigateByUrl('/home');
     }
     else
     {
@@ -33,7 +33,6 @@ export class BusComponent implements OnInit{
         destination=p['destination']
         doj=p['doj']
       })
-      console.log(source,destination,doj)
       this.searchData(source,destination, doj);
     }
     }
@@ -55,13 +54,7 @@ export class BusComponent implements OnInit{
       }
     )
   }
-  
-  deleteBus(bus:any)
-  {
-    console.log(bus.id)
-    this.busService.deleteBus(bus.id);
-    this.buses=this.buses.filter(item=>item.id!=bus.id)
-  }
+
 
   bookBus(bus:any)
   {

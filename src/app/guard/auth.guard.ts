@@ -21,7 +21,6 @@ export const conductorGuard: CanActivateFn = (route, state) => {
   const userData=JSON.parse(loggedData!)
   if(userData.roles=="conductor")
   {
-    router.navigateByUrl("/home")
     return true;
   }
   router.navigateByUrl("/home")

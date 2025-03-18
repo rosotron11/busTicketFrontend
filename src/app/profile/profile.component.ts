@@ -20,7 +20,11 @@ export class ProfileComponent implements OnInit{
   }
   profile:any=null
   ngOnInit(): void {
-      this.profile=JSON.parse(localStorage.getItem('userDet')!)
+      const id=JSON.parse(localStorage.getItem('userDet')!).id
+      this.userService.getUserById(id).subscribe((res:any)=>
+      {
+        this.profile=res;
+      })
   }
 
   delete(id:number)

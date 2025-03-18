@@ -27,7 +27,6 @@ export class JWTInterceptor implements HttpInterceptor
           }
         }
       )
-      console.log(newCloneRequest)
       return next.handle(newCloneRequest).pipe(
         catchError((error:HttpErrorResponse)=>{
           console.log(error)

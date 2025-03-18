@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BusService } from '../services/bus.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,8 +24,38 @@ export class BusRegistrationComponent {
       timeOfDropping: new FormControl('',[Validators.required]),
       dateOfJourney: new FormControl('',[Validators.required]),
       seats: new FormControl('',[Validators.required]),
+      boardingPlaces: new FormArray([new FormControl('', Validators.required)]),
+      dropOffPlaces: new FormArray([new FormControl('', Validators.required)]),
       conductor: new FormControl('',[Validators.required])
     })
+
+    get boardingPlaces() {
+      return this.busRegistration.get('boardingPlaces') as FormArray;
+    }
+  
+    get dropOffPlaces() {
+      return this.busRegistration.get('dropOffPlaces') as FormArray;
+    }
+  
+    addBoardingPlace() {
+      this.boardingPlaces.push(new FormControl('', Validators.required));
+    }
+  
+    removeBoardingPlace(index: number) {
+      if (this.boardingPlaces.length > 1) {
+        this.boardingPlaces.removeAt(index);
+      }
+    }
+  
+    addDropOffPlace() {
+      this.dropOffPlaces.push(new FormControl('', Validators.required));
+    }
+  
+    removeDropOffPlace(index: number) {
+      if (this.dropOffPlaces.length > 1) {
+        this.dropOffPlaces.removeAt(index);
+      }
+    }
 
     submitForm()
     {
@@ -36,7 +66,7 @@ export class BusRegistrationComponent {
       if(this.busRegistration.valid){
         console.log(this.busRegistration.value)
         this.busService.addBus(this.busRegistration.value)
-        this.router.navigateByUrl("")
+        this.router.navigateByUrl("/my-bus")
       }
       else
       {

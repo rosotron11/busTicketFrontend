@@ -1,0 +1,26 @@
+Bus:{{bus.id}}
+Vendor:{{bus.conductor.username}}
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Ticket Number</th>
+        <th>Boarding Place</th>
+        <th>Dropping Off Place</th>
+        <th>Boarding Time</th>
+        <th>Ticket Status</th>
+        <th>Actions</th>
+    </tr>
+
+@for (ticket of tickets; track $index) {
+    <tr>
+        <td>{{ticket.passenger.username}}</td>
+        <td>{{ticket.ticketNumber}}</td>
+        <td>{{ticket.source}}</td>
+        <td>{{ticket.destination}}</td>
+        <td>{{ticket.boardingTime}}</td>
+        <td>{{ticket.paymentStatus}}</td>
+        <td><button (click)="deleteTicket(ticket)">Cancel Ticket</button></td>
+    </tr>
+}
+</table>
+<button (click)="sendCloseSignal()">Close</button>

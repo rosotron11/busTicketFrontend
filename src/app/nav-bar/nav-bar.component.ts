@@ -16,15 +16,14 @@ export class NavBarComponent implements OnInit{
   router=inject(Router);
   menuList:MenuItem[] = [
       {path:'/home',title:'Home', roles:['passenger','all','conductor']},
-      {path:'/bus',title:'Available Buses', roles:['passenger','all','conductor']},
       {path:'/search',title:'Search Buses', roles:['passenger','all','conductor']},
       {path:'/bus/create',title:'Add your Bus', roles:['conductor']},
-      {path:'/ticket',title:'Tickets', roles:['conductor','passenger']},
+      {path:'/my-ticket',title:'My Tickets', roles:['conductor','passenger']},
+      {path:'/my-bus',title:'My Buses', roles:['conductor']},
       {path:'/login',title:'Login', roles:['all']},
       {path:'/register',title:'Register', roles:['all']},
       {path:'/profile',title:'Profile',roles:['passenger','conductor']},
       {path:'/logout',title:'Logout', roles:['passenger','conductor']},
-      
   ]
 
   loggedUserMenuList: Observable<any[]>= new Observable<any[]>

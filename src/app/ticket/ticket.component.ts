@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TicketService } from '../services/ticket.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-ticket',
@@ -11,6 +12,9 @@ import { TicketService } from '../services/ticket.service';
 export class TicketComponent implements OnInit{
   
   tickets:any[]=[]
+  authService=inject(AuthService)
+  loggedData=localStorage.getItem('userDet');
+  userData=JSON.parse(this.loggedData!)
   constructor(private ticketService:TicketService)
   {
     
@@ -21,7 +25,7 @@ export class TicketComponent implements OnInit{
   }
 
   fetchData(){
-    this.ticketService.getTicket().subscribe(data=>
+    this.ticketService.getTicketbyUserId(this.userData.id).subscribe(data=>
       {
         this.tickets=data
         console.log(data)

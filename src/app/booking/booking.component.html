@@ -9,6 +9,20 @@
         <td>{{activeBus.dateOfJourney}}</td>
         <td>{{activeBus.seats}}</td>
         <td>{{activeBus.conductor.username}}</td>
+        <td>
+            <select [(ngModel)]="selectedBoardingPlace">
+                @for (place of activeBus.boardingPlaces; track $index) {
+                    <option [value]="place">{{place}}</option>
+                }
+            </select>
+        </td>
+        <td>
+            <select [(ngModel)]="selectedDropOffPlace">
+                @for (place of activeBus.dropOffPlaces; track $index) {
+                    <option [value]="place">{{place}}</option>
+                }
+            </select>
+        </td>
         <td><button (click)="payBus(activeBus)">Pay</button></td>
     </tr>
 </table>

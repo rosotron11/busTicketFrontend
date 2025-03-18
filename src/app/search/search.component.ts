@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit{
     }
     else
     {
-      console.log("error")
+      window.alert("error")
     }
   }
 }

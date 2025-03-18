@@ -11,9 +11,9 @@ export class TicketService {
 
   backend= "http://localhost:8080/tickets"
   
-    getTicket()
+    getTicketbyUserId(id:number)
     {
-      return this.http.get<any[]>(this.backend);
+      return this.http.get<any[]>(`${this.backend}/user/${id}`);
     }
 
     deleteTicket(id:number)
