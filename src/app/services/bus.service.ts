@@ -52,4 +52,8 @@ export class BusService {
   getTicketsFromBus(id: number) {
     return this.http.get<any[]>(`${this.backend}/${id}/tickets`);
   }
+  getBookedSeatsFromBusId(id:number)
+  {
+    return this.http.get<any[]>(`${this.backend}/${id}/seats`)
+  }
 }

@@ -89,4 +89,9 @@ export class UserService {
       const userData=JSON.parse(loggedData!)
       return of(userData);
     }
+
+    check(jwt:string)
+    {
+      return this.http.get<String>(`http://localhost:8080/check/${jwt}`)
+    }
 }

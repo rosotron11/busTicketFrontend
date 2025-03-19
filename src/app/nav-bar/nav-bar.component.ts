@@ -1,4 +1,4 @@
-import {Component, inject, OnInit } from '@angular/core';
+import {Component, inject, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { MenuItem } from '../interfaces/nav-items';
 import { UserService } from '../services/user.service';
@@ -29,17 +29,15 @@ export class NavBarComponent implements OnInit{
   loggedUserMenuList: Observable<any[]>= new Observable<any[]>
 
   ngOnInit(): void {
-      const loggedData=localStorage.getItem('userDet');
+      let loggedData
+      this.userService.getUserDet().subscribe(x=>{
+        loggedData=x
+      });
       if(loggedData)
       {
-        const userData=JSON.parse(loggedData)
-        this.loggedUserMenuList = of(this.menuList.filter(x=>x.roles?.includes(userData.roles)))
+        console.log(loggedData)
+        const userRole=JSON.parse(JSON.stringify(loggedData)).roles
+        this.loggedUserMenuList = of(this.menuList.filter(x=>x.roles?.includes(userRole)))
       }
-      // this.userService.getUserDet().subscribe(x=>
-      //   {
-      //     this.loggedUserMenuList=this.menuList.filter(y=>y.roles?.includes(x.roles))
-      //   }
-      //   )
   }
-  
 }

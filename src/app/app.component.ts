@@ -1,7 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { UserService } from './services/user.service';
+import { catchError, of, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +24,27 @@ export class AppComponent implements OnInit{
     {
       localStorage.setItem('userDet','{"roles":"all"}')
     }
+    // else
+    // {
+    //   if(auth && JSON.parse(userDet).jwt)
+    //   {
+    //     localStorage.setItem('isAuthenticated','false')
+    //     this.userService.check(JSON.parse(userDet).jwt).subscribe((res:any)=>{
+    //       if(res==false)
+    //       {
+    //         inject(Router).navigateByUrl('/logout');
+    //       } 
+    //       else
+    //       {
+    //         localStorage.setItem('isAuthenticated','true')
+    //       }        
+    //     })
+    //   }
+    //   if(!JSON.parse(userDet).jwt)
+    //   {
+    //     inject(Router).navigateByUrl('/logout');
+    //   }
+    // }
   }
   title = 'busTicketFrontend';
   

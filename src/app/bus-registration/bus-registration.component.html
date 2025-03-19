@@ -10,10 +10,13 @@
         <div formArrayName="boardingPlaces">
             @for (place of boardingPlaces.controls; track $index) 
             {
-                <input [formControlName]="$index" placeholder="Boarding Place">
-                @if (boardingPlaces.length>1) {
-                    <button (click)="removeBoardingPlace($index)">-</button>
-                }
+                <div [formGroupName]="$index">
+                    <input type="text" formControlName="boardingPlace" placeholder="Boarding Place">
+                    <input type="time" formControlName="boardingTime" placeholder="Boarding Time">
+                    @if (boardingPlaces.length>1) {
+                        <button (click)="removeBoardingPlace($index)">-</button>
+                    }
+                </div>
             }
             <button (click)="addBoardingPlace()">+</button>
         </div>
@@ -21,13 +24,17 @@
         <div formArrayName="dropOffPlaces">
             @for (place of dropOffPlaces.controls; track $index) 
             {
-                <input [formControlName]="$index" placeholder="Drop Off Place">
-                @if (dropOffPlaces.length>1) {
-                    <button (click)="removeDropOffPlace($index)">-</button>
-                }
+                <div [formGroupName]="$index">
+                    <input type="text" formControlName="droppingPlace" placeholder="Drop Off Place">
+                    <input type="time" formControlName="droppingTime" placeholder="Drop Off Time">
+                    @if (dropOffPlaces.length>1) {
+                        <button (click)="removeDropOffPlace($index)">-</button>
+                    }
+                </div>
             }
             <button (click)="addDropOffPlace()">+</button>
         </div>
+        <input type="number" placeholder="Price in Rs. " formControlName="price" step="0.01">
         <input type="number" placeholder="conductor" formControlName="conductor" hidden>
         <button type="submit">Add a bus</button>
     </form>

@@ -26,7 +26,6 @@ export class TicketService {
     }
     bookTicket(ticket:any)
     {
-      console.log(ticket)
       return this.http.post(this.backend,ticket,{responseType:"text"}).subscribe(
         (res:any)=>{
           console.log(res)

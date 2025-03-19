@@ -7,6 +7,7 @@
         <th>Date of Journey</th>
         <th>Boarding Time</th>
         <th>Payment Status</th>
+        <th>Amount</th>
         <th>Actions</th>
     </tr>
 @for (ticket of tickets; track $index) {
@@ -18,6 +19,7 @@
             <td>{{ticket.dateOfJourney}}</td>
             <td>{{ticket.boardingTime}}</td>
             <td>{{ticket.paymentStatus}}</td>
+            <td>{{ticket.amount}}</td>
             <td><button (click)="deleteTicket(ticket)">Cancel Ticket</button></td>
         </tr>
 }

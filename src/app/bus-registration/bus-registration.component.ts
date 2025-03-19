@@ -24,8 +24,19 @@ export class BusRegistrationComponent {
       timeOfDropping: new FormControl('',[Validators.required]),
       dateOfJourney: new FormControl('',[Validators.required]),
       seats: new FormControl('',[Validators.required]),
-      boardingPlaces: new FormArray([new FormControl('', Validators.required)]),
-      dropOffPlaces: new FormArray([new FormControl('', Validators.required)]),
+      boardingPlaces: new FormArray([
+        new FormGroup({
+          boardingPlace:new FormControl('',[Validators.required]),
+          boardingTime:new FormControl('',[Validators.required])
+        })
+      ]),
+      dropOffPlaces: new FormArray([
+        new FormGroup({
+          droppingPlace:new FormControl('',[Validators.required]),
+          droppingTime:new FormControl('',[Validators.required])
+        })
+      ]),
+      price:new FormControl('',[Validators.required]),
       conductor: new FormControl('',[Validators.required])
     })
 
@@ -38,7 +49,10 @@ export class BusRegistrationComponent {
     }
   
     addBoardingPlace() {
-      this.boardingPlaces.push(new FormControl('', Validators.required));
+      this.boardingPlaces.push(new FormGroup({
+        boardingPlace:new FormControl('',[Validators.required]),
+        boardingTime:new FormControl('',[Validators.required])
+      }));
     }
   
     removeBoardingPlace(index: number) {
@@ -48,7 +62,10 @@ export class BusRegistrationComponent {
     }
   
     addDropOffPlace() {
-      this.dropOffPlaces.push(new FormControl('', Validators.required));
+      this.dropOffPlaces.push(new FormGroup({
+        droppingPlace:new FormControl('',[Validators.required]),
+        droppingTime:new FormControl('',[Validators.required])
+      }));
     }
   
     removeDropOffPlace(index: number) {
@@ -66,7 +83,7 @@ export class BusRegistrationComponent {
       if(this.busRegistration.valid){
         console.log(this.busRegistration.value)
         this.busService.addBus(this.busRegistration.value)
-        this.router.navigateByUrl("/my-bus")
+        //this.router.navigateByUrl("/my-bus")
       }
       else
       {
