@@ -32,4 +32,8 @@ export class TicketService {
         }
       )
     }
+    completePayment(id:number)
+    {
+      return this.http.put(`${this.backend}/pay`,id,{responseType:'text'})
+    }
 }

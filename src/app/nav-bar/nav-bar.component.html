@@ -1,8 +1,0 @@
-
-<div>
-    <nav>
-    @for (item of loggedUserMenuList | async; track $index) {
-        <a [routerLink]="item.path">{{item.title}}</a>
-    }
-</nav>
-</div>

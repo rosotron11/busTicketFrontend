@@ -1,0 +1,46 @@
+Total User:{{users.length}}<br>
+<button (click)="showConductors()">Show Conductors</button>
+<button (click)="showPassengers()">Show Passengers</button>
+<button (click)="showAll()">Show All</button>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Registered On</th>
+        <th>Actions</th>
+    </tr>
+@for (user of displayUsers; track $index) {
+    <tr>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.roles}}</td>
+        <td>{{user.registeredOn}}</td>
+        <td>
+            @if(user.roles=='conductor'){
+                <button (click)="showBus(user)">Show Bus</button>
+            }
+            @else if(user.roles=='passenger'){
+                <button (click)="showTicket(user)">Show Ticket</button>
+            }
+            <button (click)="delete(user)">Delete</button>
+        </td>
+    </tr>
+    @if(activatedBusPanel && selectedUser==user)
+    {
+        <tr>
+            <td colspan="5">
+                <app-show-bus [user]="selectedUser" (closeChild)="closeBusPanel()"></app-show-bus>
+            </td>
+        </tr>
+    }
+    @if(activatedTicketPanel && selectedUser==user)
+    {
+        <tr>
+            <td colspan="5">
+                <app-show-ticket [user]="selectedUser" (closeChild)="closeTicketPanel()"></app-show-ticket>
+            </td>
+        </tr>
+    }
+}
+</table>

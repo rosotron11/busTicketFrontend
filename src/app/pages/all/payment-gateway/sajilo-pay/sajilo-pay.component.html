@@ -1,0 +1,4 @@
+<h1>Sajilo Pay</h1>
+Amount: Rs {{amount}}
+Ticket ID:  {{`T${id.toString().padStart(3, '0')}`}}
+<button (click)="completePayment()">Pay Rs {{amount}}</button>

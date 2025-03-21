@@ -1,17 +1,20 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { UserComponent } from './user/user.component';
-import { BusComponent } from './bus/bus.component';
-import { TicketComponent } from './ticket/ticket.component';
-import { BusRegistrationComponent } from './bus-registration/bus-registration.component';
-import { SearchComponent } from './search/search.component';
-import { ProfileComponent } from './profile/profile.component';
-import { LogoutComponent } from './logout/logout.component';
-import { authGuard, conductorGuard, loginAuthGuard } from './guard/auth.guard';
-import { MyBusComponent } from './my-bus/my-bus.component';
-import { BusPassengersComponent } from './bus-passengers/bus-passengers.component';
+import { HomeComponent } from './pages/all/home/home.component';
+import { LogoutComponent } from './pages/all/logout/logout.component';
+import { adminGuard, authGuard, conductorGuard, loginAuthGuard, paymentGuard } from './guard/auth.guard';
+import { AllUsersComponent } from './pages/admin/all-users/all-users.component';
+import { SajiloPayComponent } from './pages/all/payment-gateway/sajilo-pay/sajilo-pay.component';
+import { LoginComponent } from './pages/all/login/login.component';
+import { SearchComponent } from './pages/all/search/search.component';
+import { ProfileComponent } from './pages/all/profile-activity/profile/profile.component';
+import { RegisterComponent } from './pages/all/register/register.component';
+import { BusComponent } from './pages/all/bus-activity/bus/bus.component';
+import { MyBusComponent } from './pages/conductor/my-bus/my-bus.component';
+import { BusRegistrationComponent } from './pages/conductor/bus-registration/bus-registration.component';
+import { TicketComponent } from './pages/all/ticket/ticket.component';
+import { RamroPayComponent } from './pages/all/payment-gateway/ramro-pay/ramro-pay.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { ConductorDashboardComponent } from './pages/conductor/conductor-dashboard/conductor-dashboard.component';
 
 export const routes: Routes = [
     {
@@ -27,11 +30,6 @@ export const routes: Routes = [
         path:"register",
         component:RegisterComponent,
         canActivate:[loginAuthGuard]
-    },
-    {
-        path:"user",
-        component:UserComponent,
-        canActivate:[authGuard]
     },
     {
         path:"bus",
@@ -61,11 +59,31 @@ export const routes: Routes = [
         path:"search",
         component:SearchComponent
     },
-    // {
-    //     path:"bus/passengers",
-    //     component:BusPassengersComponent,
-    //     canActivate:[authGuard,conductorGuard]
-    // },
+    {
+        path:"all-users",
+        component:AllUsersComponent,
+        canActivate:[authGuard,adminGuard]
+    },
+    {
+        path:"dashboard",
+        component:DashboardComponent,
+        canActivate:[authGuard,adminGuard]
+    },
+    {
+        path:"dashboard/conductor",
+        component:ConductorDashboardComponent,
+        canActivate:[authGuard,conductorGuard]
+    },
+    {
+        path:"RamroPay",
+        component:RamroPayComponent,
+        canActivate:[authGuard,paymentGuard]
+    },
+    {
+        path:"SajiloPay",
+        component:SajiloPayComponent,
+        canActivate:[authGuard,paymentGuard]
+    },
     {
         path:"profile",
         component:ProfileComponent,

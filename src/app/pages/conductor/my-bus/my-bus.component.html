@@ -1,0 +1,39 @@
+<table>
+    <tr>
+        <th>Bus Number</th>
+        <th>Vendor</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Date of Journey</th>
+        <th>Time of Boarding</th>
+        <th>Time of Dropping</th>
+        <th>Booked Seats</th>
+        <th>Total Seats</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+@for (bus of buses; track $index) {
+        <tr>
+            <td>{{bus.busNumber}}</td>   
+            <td>{{bus.conductor.username}}</td>
+            <td>{{bus.source}}</td>
+            <td>{{bus.destination}}</td>
+            <td>{{bus.dateOfJourney}}</td>
+            <td>{{bus.timeOfBoarding}}</td>
+            <td>{{bus.timeOfDropping}}</td>
+            <td>{{bus.bookedSeats}}</td>
+            <td>{{bus.totalSeats}}</td>
+            <td>{{bus.price}}</td>
+            <td><button (click)="deleteBus(bus)">Remove Bus</button></td>
+            <td><button (click)="seePassengers(bus)">See Passengers</button></td>
+        </tr>
+        @if(activatedTicket && selectedBus===bus)
+        {
+            <tr>
+                <td colspan="8">
+                    <app-bus-passengers [bus]="selectedBus" (closeChild)="closePanel()"></app-bus-passengers>
+                </td>
+            </tr>
+        }
+}
+</table>

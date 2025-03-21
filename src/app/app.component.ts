@@ -1,9 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NavBarComponent } from "./nav-bar/nav-bar.component";
+import { NavBarComponent } from "./pages/all/nav-bar/nav-bar.component";
 import { Router, RouterOutlet } from '@angular/router';
 import { UserService } from './services/user.service';
-import { catchError, of, throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',

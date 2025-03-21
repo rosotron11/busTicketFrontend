@@ -1,0 +1,51 @@
+<div>
+    Total Tickets: {{totalStats.totalTicket}} <br>
+    Total Booked but Unpaid Tickets: {{totalStats.bookedTicket}} <br>
+    Total Paid & Confirmed Tickets: {{totalStats.paidTicket}} <br>
+    Total Payment Amount:{{totalStats.totalAmount}} <br>
+    Total Vendor:{{totalStats.totalVendor}} <br>
+    Total Bus:{{totalStats.totalBus}} <br>
+    Average Amount Per Ticket:{{totalStats.averageAmountPerTicket}}<br>
+    Average Amount Per Bus:{{totalStats.averageAmountPerBus}}<br>
+</div>
+<div>
+    <h1> Daily Payment & Booking Stats</h1>
+    <input type="date" [(ngModel)]="dateForTickets">
+    <button (click)="getDailyTicketStats()">Get Daily Stats</button><br>
+    @if(dateForTickets!=null && dailyTicketStatsPanel){
+        For the day:{{dateForTickets}} <br>
+        Total Tickets: {{dailyTicketStats.totalTicket}} <br>
+        Total Booked but Unpaid Tickets: {{dailyTicketStats.bookedTicket}} <br>
+        Total Paid & Confirmed Tickets: {{dailyTicketStats.paidTicket}} <br>
+        Amount for the day:{{dailyTicketStats.totalAmount}} <br>
+        Average Amount Per Paid Ticket:{{dailyTicketStats.averageAmount}} <br>
+    }
+</div>
+<div>
+    <h1> Weekly Payment & Booking Stats</h1>
+</div>
+<div>
+    <h1> Monthly Payment & Booking Stats</h1>
+</div>
+<div>
+    <h1>Daily Bus Stats</h1>
+    <input type="date" [(ngModel)]="dateForBus">
+    <button (click)="getDailyBusStats()">Get Bus Daily Stats</button><br>
+    @if(dateForBus!=null && dailyBusStatsPanel){
+        For the day: {{dateForBus}}<br>
+        Total Vendor: {{dailyBusStats.totalVendor}}<br>
+        Total Bus: {{dailyBusStats.totalBus}}<br>
+        Total Passengers: {{dailyBusStats.totalPassengers}}<br>
+        Average Passenger Per Bus: {{dailyBusStats.avPassengerPerBus}}<br>
+        Total Journey Time: {{dailyBusStats.totalTime}}<br>
+        Average Journey Time Per Bus: {{dailyBusStats.avJourneyTime}}<br>
+        Total Amount Made: {{dailyBusStats.totalAmount}}<br>
+        Average Amount Made Per Bus: {{dailyBusStats.averageAmount}}<br>
+    }
+</div>
+<div>
+    <h1>Weekly Bus Stats</h1>
+</div>
+<div>
+    <h1>Monthly Bus Stats</h1>
+</div>

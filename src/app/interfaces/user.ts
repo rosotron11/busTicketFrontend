@@ -1,12 +1,7 @@
-import { Bus } from "./bus"
-import { Ticket } from "./ticket"
-
-export interface User {
-    id:number
-    username:string
-    password:string
-    email:string
-    roles:string
-    tickets:Ticket[]
-    buses:Bus[]
+export interface IUser {
+    id: number;
+    username: string;
+    email: string;
+    roles: string;
+    registeredOn: string
 }

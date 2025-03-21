@@ -1,0 +1,56 @@
+<table>
+    <tr>
+        <th>Ticket Number</th>
+        <th>Bus Number</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Date of Journey</th>
+        <th>Boarding Time</th>
+        <th>Dropping Time</th>
+        <th>Number of Seats</th>
+        <th>Booked On</th>
+        <th>Paid On</th>
+        <th>Amount</th>
+        <th>Ticket Status</th>
+        <th>Actions</th>
+    </tr>
+@for (ticket of tickets; track $index) {
+        <tr>
+            <td>{{ticket.ticketNumber}}</td>   
+            <td>{{ticket.bus.busNumber}}</td>
+            <td>{{ticket.source}}</td>
+            <td>{{ticket.destination}}</td>
+            <td>{{ticket.dateOfJourney}}</td>
+            <td>{{ticket.boardingTime}}</td>
+            <td>{{ticket.droppingTime}}</td>
+            <td>{{ticket.passengers.length}}</td>
+            <td>{{ticket.bookingTime}}</td>
+            <td>
+            @if(ticket.paymentStatus=='Unpaid')
+            {
+                <select [(ngModel)]="paymentGateway" (change)="paymentChange($event)">
+                    <option [value]="'RamroPay'" checked>RamroPay</option>
+                    <option [value]="'SajiloPay'">SajiloPay</option>
+                </select>
+                <button (click)="routeToPayment(ticket.amount,ticket.id)">Pay Now Using {{paymentGateway}}</button>
+            }
+            @else
+            {
+                {{ticket.paymentTime}}
+            }
+            </td>
+            <td>
+                @if(ticket.paymentStatus=='Unpaid')
+                {
+                    Booked
+                }
+                @else
+                {
+                    Confirmed
+                }
+                </td>
+            <td>{{ticket.amount}}</td>
+            <td><button (click)="deleteTicket(ticket)">Cancel Ticket</button></td>
+        </tr>
+}
+</table>
