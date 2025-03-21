@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { IUser } from '../interfaces/user';
+import { FormGroup } from '@angular/forms';
+import { LoginRequest } from '../interfaces/request/LoginRequest';
+import { RegisterRequest } from '../interfaces/request/RegisterRequest';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +15,19 @@ export class UserService {
   backend= "http://localhost:8080/users"
   backendRegister="http://localhost:8080/register"
   backendLogin="http://localhost:8080/login"
-    constructor(private http:HttpClient) { }
+    constructor(private http:HttpClient, private router:Router) { }
   
     getUser()
     {
-      return this.http.get<any[]>(this.backend);
+      return this.http.get<IUser[]>(this.backend);
     }
 
     getUserById(id:number)
     {
-      return this.http.get<any>(`${this.backend}/${id}`);
+      return this.http.get<IUser>(`${this.backend}/${id}`);
     }
 
-    createUser(form:any)
+    createUser(form:RegisterRequest)
     {
       return this.http.post(this.backendRegister,form,{responseType:'text'})
       .subscribe((res:any)=>{
@@ -40,7 +45,7 @@ export class UserService {
       })
     }
 
-    loginUser(form:any)
+    loginUser(form:LoginRequest)
     {
       return this.http.post(this.backendLogin,form,{responseType:'text'})
       .subscribe((res:any)=>{
@@ -65,26 +70,33 @@ export class UserService {
       })
     }
 
-    updateUser(id:number, form:any)
+    updateUser(id:number, form:FormGroup)
     {
-      return this.http.put(`${this.backend}/${id}`,form,{responseType:'text'}).subscribe(
+      return this.http.put(`${this.backend}/${id}`,form.value,{responseType:'text'}).subscribe(
         (res:any)=>
         {
-          console.log(res)
+          if(res=='Username or Email Already Exists')
+          {
+            window.alert('Username or Email Already Exists')
+          }
+          if(res=='Updated')
+          {
+            this.router.navigateByUrl("/logout")
+          }
         }
       )
     }
 
-    changePassword(id:number,form:any)
+    changePassword(id:number,form:FormGroup)
     {
-      return this.http.post(`${this.backend}/${id}/changepassword`,form,{responseType:'text'}).subscribe(
+      return this.http.post(`${this.backend}/${id}/changepassword`,form.value,{responseType:'text'}).subscribe(
       (res:any)=>{
         console.log(res)
       }
       )
     }
     
-    getUserDet(): Observable<any> {
+    getUserDet(): Observable<JSON> {
       const loggedData=localStorage.getItem('userDet');
       const userData=JSON.parse(loggedData!)
       return of(userData);

@@ -15,6 +15,8 @@ import { TicketComponent } from './pages/all/ticket/ticket.component';
 import { RamroPayComponent } from './pages/all/payment-gateway/ramro-pay/ramro-pay.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ConductorDashboardComponent } from './pages/conductor/conductor-dashboard/conductor-dashboard.component';
+import { AppComponent } from './app.component';
+import { NavBarComponent } from './pages/all/nav-bar/nav-bar.component';
 
 export const routes: Routes = [
     {

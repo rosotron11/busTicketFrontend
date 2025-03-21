@@ -14,14 +14,14 @@ export class ShowBusComponent {
   @Input() user!: IUser;
   closeChild=output<void>();
   buses:IBus[]=[]
-  selectedBus:IBus | undefined
+  selectedBus!:IBus
   activatedTicket:boolean=false
   constructor(private busService:BusService)
   {
 
   }
   ngOnInit(): void {
-    this.busService.getBusByUserId(this.user.id).subscribe((res:any)=>{
+    this.busService.getBusByUserId(this.user.id).subscribe((res:IBus[])=>{
       this.buses=res
     })
   }

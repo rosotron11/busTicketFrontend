@@ -14,10 +14,10 @@ import { DailyTicketStats } from '../../../interfaces/response/DailyTicketStats'
 export class DashboardComponent implements OnInit{
 
   totalStats!: AllTimeStats;
-  dateForTickets:any
-  dateForBus:any
-  dailyBusStats:DailyBusStats | undefined
-  dailyTicketStats:DailyTicketStats | undefined
+  dateForTickets!:Date
+  dateForBus!:Date
+  dailyBusStats!:DailyBusStats 
+  dailyTicketStats!:DailyTicketStats
   dailyTicketStatsPanel:boolean=false
   dailyBusStatsPanel:boolean=false
   weekStartDateforTicket:any
@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit{
   }
   ngOnInit(): void {
     this.dashboardService.getTotalStats().subscribe(
-      (res:any)=>{
+      (res:AllTimeStats)=>{
         this.totalStats=res
       }
     )
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit{
     if(this.dateForTickets!=null)
     {
       this.dashboardService.getDailyTicketStats(this.dateForTickets).subscribe(
-        (res:any)=>{
+        (res:DailyTicketStats)=>{
           console.log(res);
           this.dailyTicketStats=res
         }
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit{
     if(this.dateForBus!=null)
     {
       this.dashboardService.getDailyBusStats(this.dateForBus).subscribe(
-        (res:any)=>{
+        (res:DailyBusStats)=>{
           console.log(res)
           this.dailyBusStats=res
         }

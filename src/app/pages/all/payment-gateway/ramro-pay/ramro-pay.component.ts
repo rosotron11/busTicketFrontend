@@ -9,8 +9,8 @@ import { TicketService } from '../../../../services/ticket.service';
   styleUrl: './ramro-pay.component.css'
 })
 export class RamroPayComponent implements OnInit{
-  amount: any;
-  id:any;
+  amount: number=0;
+  id:number=0;
 
   constructor(private router: Router,private ticketService:TicketService) {
   }

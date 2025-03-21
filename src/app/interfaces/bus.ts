@@ -10,7 +10,7 @@ export interface IBus {
     destination: string;
     timeOfBoarding: string; // ISO 8601 string format for LocalTime
     timeOfDropping: string; // ISO 8601 string format for LocalTime
-    dateOfJourney: string; // ISO 8601 string format for LocalDate
+    dateOfJourney: Date; // ISO 8601 string format for LocalDate
     boardingPlaces: Array<{ [key: string]: string }>;
     dropOffPlaces: Array<{ [key: string]: string }>;
     bookedSeats: number;

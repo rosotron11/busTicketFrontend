@@ -12,6 +12,9 @@
         <th>Seats</th>
         <th>Actions</th>
     </tr>
+    @if(buses.length<1){
+        <h1 style="align-self: center;">No Bus Found</h1>
+    }
     @for (bus of buses; track $index) {
         <tr>
             <td>{{bus.busNumber}}</td>
@@ -20,7 +23,7 @@
             <td>{{bus.destination}}</td>
             <td>{{bus.timeOfBoarding}}</td>
             <td>{{bus.timeOfDropping}}</td>
-            <td>{{bus.timeOfDropping-bus.timeOfBoarding}}</td>
+            <td>{{getTimeDifference(bus.timeOfBoarding,bus.timeOfDropping)}}</td>
             <td>{{bus.dateOfJourney}}</td>
             <td>{{bus.totalSeats-bus.bookedSeats}} out of {{bus.totalSeats}}</td>
             <td><button type="submit" (click)="bookBus(bus)">Book</button></td>

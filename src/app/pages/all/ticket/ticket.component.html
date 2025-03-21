@@ -39,6 +39,7 @@
                 {{ticket.paymentTime}}
             }
             </td>
+            <td>Rs. {{ticket.amount}}</td>
             <td>
                 @if(ticket.paymentStatus=='Unpaid')
                 {
@@ -49,7 +50,7 @@
                     Confirmed
                 }
                 </td>
-            <td>{{ticket.amount}}</td>
+            
             <td><button (click)="deleteTicket(ticket)">Cancel Ticket</button></td>
         </tr>
 }

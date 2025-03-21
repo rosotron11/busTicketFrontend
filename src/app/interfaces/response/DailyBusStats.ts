@@ -1,10 +1,10 @@
 export interface DailyBusStats{
         totalBus:number;
         totalVendor:number;
-        totalPassenger:number;
+        totalPassengers:number;
         avPassengerPerBus:number;
         totalTime:any;
-        avJourneyTime:number;
+        avJourneyTime:any;
         totalAmount:number;
         averageAmount:number;
 }

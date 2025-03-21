@@ -12,8 +12,6 @@ export class LogoutComponent{
   {
     localStorage.removeItem('userDet')
     localStorage.setItem('isAuthenticated','false')
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-    }, 20);
+    this.router.navigateByUrl("/home")
   }
 }

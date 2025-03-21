@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { BusService } from '../../../services/bus.service';
+import { SearchResponse } from '../../../interfaces/response/SearchResponse';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +13,7 @@ import { BusService } from '../../../services/bus.service';
   styleUrl: './search.component.css'
 })
 export class SearchComponent implements OnInit{
-  search:Observable<any[]>=new Observable<any[]>
+  search:Observable<SearchResponse[]>=new Observable<SearchResponse[]>
   constructor(private router: Router, private busService:BusService)
   {
   }

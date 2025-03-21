@@ -18,7 +18,7 @@ export class ShowTicketComponent {
 
   }
   ngOnInit(): void {
-    this.ticketService.getTicketbyUserId(this.user.id).subscribe((res:any)=>{
+    this.ticketService.getTicketbyUserId(this.user.id).subscribe((res:ITicket[])=>{
       this.tickets=res
     })
   }

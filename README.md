@@ -57,3 +57,16 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+Stats ma payment ko forbidden ra totalVendor
+profile ma tyo id
+nav bar dynamic
+source destination ma jilla matra
+boarding time haru parent boarding time bhanda badi ani max +2hours and dropping time bhanda kam
+Dropping time dropping time bhanda kam ghati ma -2 hours adni boarding time bhanda badi
+ani tyo button ma error haru + - dabda
+
+point to be noted
+my-bus ma refresh ma afai aucha ticket book garda same system chiayo
+tickets sidhai delete garna milcha haraucha same chaiyo aru thau ma ni

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tick } from '@angular/core/testing';
+import { ITicket } from '../interfaces/ticket';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class TicketService {
   
     getTicketbyUserId(id:number)
     {
-      return this.http.get<any[]>(`${this.backend}/user/${id}`);
+      return this.http.get<ITicket[]>(`${this.backend}/user/${id}`);
     }
 
     deleteTicket(id:number)
@@ -24,7 +26,7 @@ export class TicketService {
         console.log(res)
       })
     }
-    bookTicket(ticket:any)
+    bookTicket(ticket:ITicket)
     {
       return this.http.post(this.backend,ticket,{responseType:"text"}).subscribe(
         (res:any)=>{

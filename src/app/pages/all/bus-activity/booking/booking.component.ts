@@ -16,7 +16,7 @@ export class BookingComponent implements  OnInit{
   id = JSON.parse(localStorage.getItem('userDet')!);
   jsonID = { id: this.id.id };
   selectedSeats:number[]=[]
-  amount:number=1
+  amount:number=0
   seatArray: number[][] = [];
   bookedSeats:number[]=[]
   paymentGateway:string='';
@@ -36,7 +36,7 @@ export class BookingComponent implements  OnInit{
         }
         this.seatArray.push(row);
     }
-    this.busService.getBookedSeatsFromBusId(this.activeBus.id).subscribe((res:any)=>{
+    this.busService.getBookedSeatsFromBusId(this.activeBus.id).subscribe((res:number[])=>{
       this.bookedSeats=res
       console.log(this.bookedSeats)
     }
@@ -78,15 +78,15 @@ export class BookingComponent implements  OnInit{
     }
   }
 
-  getBoardingTime(boardingPlaces:any[],place:string)
+  getBoardingTime(boardingPlaces:Array<{ [key: string]: string }>,place:string)
   {
-    const detail = boardingPlaces.find((detail: any) => detail.boardingPlace === place);
-    return detail.boardingTime;
+    const detail = boardingPlaces.find((detail: { [key: string]: string }) => detail['boardingPlace'] === place);
+    return detail!['boardingTime'];
   }
-  getDroppingTime(droppingPlaces:any[], place:string)
+  getDroppingTime(droppingPlaces:Array<{ [key: string]: string }>, place:string)
   {
-    const detail = droppingPlaces.find((detail: any) => detail.droppingPlace === place);
-    return detail.droppingTime;
+    const detail = droppingPlaces.find((detail: { [key: string]: string }) => detail['droppingPlace'] === place);
+    return detail!['droppingTime'];
   }
 
   selectSeat(num:number)
@@ -128,7 +128,9 @@ export class BookingComponent implements  OnInit{
     { 
       this.ticketService.bookTicket(this.bookingForm.value);
       console.log(this.bookingForm.value)
-      this.router.navigateByUrl("/my-ticket")
+      setTimeout(() => {
+        this.router.navigateByUrl("/my-ticket");
+      }, 100);
     }
     else
     {

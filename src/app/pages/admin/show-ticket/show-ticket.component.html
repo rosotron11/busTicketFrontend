@@ -15,8 +15,8 @@
         @for(passenger of ticket.passengers;track $index)
         {
             <tr>
-                <td>{{passenger.name}}</td>
-                <td>{{passenger.seatNo}}</td>
+                <td>{{passenger['name']}}</td>
+                <td>{{passenger['seatNo']}}</td>
                 <td>{{ticket.ticketNumber}}</td>
                 <td>{{ticket.source}}</td>
                 <td>{{ticket.destination}}</td>

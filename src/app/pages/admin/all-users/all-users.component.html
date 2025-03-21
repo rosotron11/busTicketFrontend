@@ -19,6 +19,7 @@ Total User:{{users.length}}<br>
         <td>
             @if(user.roles=='conductor'){
                 <button (click)="showBus(user)">Show Bus</button>
+                <button (click)="showTicket(user)">Show Ticket</button>
             }
             @else if(user.roles=='passenger'){
                 <button (click)="showTicket(user)">Show Ticket</button>

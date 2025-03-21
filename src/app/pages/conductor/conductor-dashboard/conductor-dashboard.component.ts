@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../../services/dashboard.service';
 import { FormsModule } from '@angular/forms';
+import { AllTimeStats } from '../../../interfaces/response/AllTimeStats';
+import { DailyBusStats } from '../../../interfaces/response/DailyBusStats';
+import { DailyTicketStats } from '../../../interfaces/response/DailyTicketStats';
 
 @Component({
   selector: 'app-conductor-dashboard',
@@ -12,11 +15,11 @@ export class ConductorDashboardComponent implements OnInit{
   loggedData=localStorage.getItem('userDet');
   userData=JSON.parse(this.loggedData!)
   id=this.userData.id;
-  totalStats:any;
+  totalStats!:AllTimeStats;
   dateForTickets:any
   dateForBus:any
-  dailyBusStats:any
-  dailyTicketStats:any
+  dailyBusStats!:DailyBusStats
+  dailyTicketStats!:DailyTicketStats
   dailyTicketStatsPanel:boolean=false
   dailyBusStatsPanel:boolean=false
   constructor(private dashboardService:DashboardService)
@@ -25,7 +28,7 @@ export class ConductorDashboardComponent implements OnInit{
   }
   ngOnInit(): void {
     this.dashboardService.getTotalStatsByConductorId(this.id).subscribe(
-      (res:any)=>{
+      (res:AllTimeStats)=>{
         console.log(res)
         this.totalStats=res
       }
@@ -35,7 +38,7 @@ export class ConductorDashboardComponent implements OnInit{
     if(this.dateForTickets!=null)
     {
       this.dashboardService.getDailyTicketStatsByConductorId(this.id,this.dateForTickets).subscribe(
-        (res:any)=>{
+        (res:DailyTicketStats)=>{
           console.log(res);
           this.dailyTicketStats=res
         }
@@ -47,7 +50,7 @@ export class ConductorDashboardComponent implements OnInit{
     if(this.dateForBus!=null)
     {
       this.dashboardService.getDailyBusStatsByConductorId(this.id,this.dateForBus).subscribe(
-        (res:any)=>{
+        (res:DailyBusStats)=>{
           console.log(res)
           this.dailyBusStats=res
         }

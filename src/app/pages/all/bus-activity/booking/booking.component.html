@@ -1,13 +1,13 @@
 <div>
     <table>
     <tr>
-        <td>{{activeBus.bus_number}}</td>
+        <td>{{activeBus.busNumber}}</td>
         <td>{{activeBus.source}}</td>
         <td>{{activeBus.destination}}</td>
         <td>{{activeBus.timeOfBoarding}}</td>
         <td>{{activeBus.timeOfDropping}}</td>
         <td>{{activeBus.dateOfJourney}}</td>
-        <td>{{activeBus.seats}}</td>
+        <td>{{activeBus.totalSeats}}</td>
         <td>{{activeBus.conductor.username}}</td>
     </tr>
     </table>
@@ -47,13 +47,13 @@
         <select formControlName="source">
             @for(place of activeBus.boardingPlaces; track $index)
             {
-                <option [value]="place.boardingPlace" selected>{{place.boardingPlace}} at {{place.boardingTime}}</option>
+                <option [value]="place['boardingPlace']" selected>{{place['boardingPlace']}} at {{place['boardingTime']}}</option>
             }
         </select>
         <select formControlName="destination">
             @for(place of activeBus.dropOffPlaces; track $index)
             {
-                <option [value]="place.droppingPlace" selected>{{place.droppingPlace}} at {{place.droppingTime}}</option>
+                <option [value]="place['droppingPlace']" selected>{{place['droppingPlace']}} at {{place['droppingTime']}}</option>
             }
         </select>
         <input type="email" placeholder="Email Address" formControlName="email">

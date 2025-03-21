@@ -1,5 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IBus } from '../interfaces/bus';
+import { FormGroup } from '@angular/forms';
+import { SearchResponse } from '../interfaces/response/SearchResponse';
+import { ITicket } from '../interfaces/ticket';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +16,11 @@ export class BusService {
 
   getBus()
   {
-    const somethiing= this.http.get<any[]>(this.backend);
+    const somethiing= this.http.get<IBus[]>(this.backend);
     return somethiing;
   }
 
-  deleteBus(id:any)
+  deleteBus(id:number)
   {
     console.log(id)
     this.http.delete(`${this.backend}/${id}`,{responseType:'text'})
@@ -24,36 +29,46 @@ export class BusService {
     })
   }
 
-  addBus(form:any)
+  addBus(form:FormGroup)
   {
-    this.http.post(this.backend,form,{responseType:'text'}).subscribe(
+    this.http.post(this.backend,form.value,{responseType:'text'})
+    .pipe(catchError((error:HttpErrorResponse)=>{
+      window.alert(error.error);
+      return throwError(()=>error)
+    }))
+    .subscribe(
       (res:any)=>{
-        if(res=='Drop before Board')
-        window.alert("Dropping Time is Before Boarding Time")
+        if(res=='Drop before Board'){
+          window.alert("Dropping Time is Before Boarding Time")
+        }
+        else if(res=='Created')
+        {
+          window.alert("Created")
+        }
       }
     )
   }
 
   searchBus(source:string,destination:string,doj:Date)
   {
-    return this.http.get<any[]>(`${this.backend}/${source}/${destination}/${doj}`)
+    return this.http.get<IBus[]>(`${this.backend}/${source}/${destination}/${doj}`)
   }
 
   getLocation()
   {
-    return this.http.get<any[]>(`${this.backend}/location`)
+    return this.http.get<SearchResponse[]>(`${this.backend}/location`)
   }
 
   getBusByUserId(id:number)
   {
-    return this.http.get<any[]>(`${this.backend}/user/${id}`)
+    return this.http.get<IBus[]>(`${this.backend}/user/${id}`)
   }
 
   getTicketsFromBus(id: number) {
-    return this.http.get<any[]>(`${this.backend}/${id}/tickets`);
+    return this.http.get<ITicket[]>(`${this.backend}/${id}/tickets`);
   }
   getBookedSeatsFromBusId(id:number)
   {
-    return this.http.get<any[]>(`${this.backend}/${id}/seats`)
+    return this.http.get<number[]>(`${this.backend}/${id}/seats`)
   }
 }

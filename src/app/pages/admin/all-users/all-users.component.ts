@@ -22,7 +22,7 @@ export class AllUsersComponent implements OnInit{
   constructor(private userService:UserService,private ticketService:TicketService, private busService:BusService)
   {
     this.userService.getUser().subscribe(
-      (res:any)=>{
+      (res:IUser[])=>{
         this.users=res
         this.displayUsers=this.users
         console.log(this.displayUsers)

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingComponent } from '../booking/booking.component';
 import { BusService } from '../../../../services/bus.service';
+import { IBus } from '../../../../interfaces/bus';
 
 @Component({
   selector: 'app-bus',
@@ -17,11 +18,11 @@ export class BusComponent implements OnInit{
   {
 
   }
-  buses:any[]=[]
-  activeBus:any=null
+  buses:IBus[]=[]
+  activeBus!:IBus
   ngOnInit():void{
     const myUrl=this.router.url;
-    let source:any, destination:any, doj:any
+    let source!:string, destination!:string, doj!:Date
     if(myUrl=="/bus")
     {
       this.router.navigateByUrl('/home');
@@ -44,6 +45,7 @@ export class BusComponent implements OnInit{
       this.buses=data;
     })
   }
+ getTimeDifference = (timeOfBoarding: string, timeOfDropping: string) => `${Math.floor((new Date(`1970-01-01T${timeOfDropping}Z`).getTime() - new Date(`1970-01-01T${timeOfBoarding}Z`).getTime()) / 60000 / 60).toString().padStart(2, '0')}hr ${((new Date(`1970-01-01T${timeOfDropping}Z`).getTime() - new Date(`1970-01-01T${timeOfBoarding}Z`).getTime()) / 60000 % 60).toString().padStart(2, '0')}min`;
 
   fetchData()
   {

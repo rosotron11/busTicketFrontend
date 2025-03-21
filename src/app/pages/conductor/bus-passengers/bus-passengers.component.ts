@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, output} from '@angular/core';
 import { BusService } from '../../../services/bus.service';
 import { TicketService } from '../../../services/ticket.service';
+import { ITicket } from '../../../interfaces/ticket';
 
 @Component({
   selector: 'app-bus-passengers',
@@ -12,13 +13,13 @@ export class BusPassengersComponent implements OnInit{
 
   @Input() bus:any
   closeChild=output<void>();
-  tickets:any[]=[]
+  tickets:ITicket[]=[]
   constructor(private busService:BusService, private ticketService:TicketService)
   {
 
   }
   ngOnInit(): void {
-    this.busService.getTicketsFromBus(this.bus.id).subscribe((res:any)=>{
+    this.busService.getTicketsFromBus(this.bus.id).subscribe((res:ITicket[])=>{
       console.log(res)
       this.tickets=res
     })
@@ -27,7 +28,7 @@ export class BusPassengersComponent implements OnInit{
   {
     this.closeChild.emit()
   }
-  deleteTicket(ticket:any) {
+  deleteTicket(ticket:ITicket) {
     this.ticketService.deleteTicket(ticket.id);
   }
 }

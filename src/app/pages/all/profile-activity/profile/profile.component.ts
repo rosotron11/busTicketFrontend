@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ProfileUpdateComponent } from "../profile-update/profile-update.component";
 import { ProfileChangePasswordComponent } from '../profile-change-password/profile-change-password.component';
 import { UserService } from '../../../../services/user.service';
+import { IUser } from '../../../../interfaces/user';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -18,13 +20,14 @@ export class ProfileComponent implements OnInit{
   {
 
   }
-  profile:any=null
+  profile!: IUser;
   ngOnInit(): void {
-      const id=JSON.parse(localStorage.getItem('userDet')!).id
-      this.userService.getUserById(id).subscribe((res:any)=>
-      {
-        this.profile=res;
-      })
+    const id=JSON.parse(localStorage.getItem('userDet')!).id
+    this.userService.getUserById(id).subscribe((res:IUser)=>
+    {
+      console.log(res)
+      this.profile=res;
+    })
   }
 
   delete(id:number)
@@ -34,7 +37,7 @@ export class ProfileComponent implements OnInit{
     window.alert("Your Account has been deleted")
   }
 
-  update(id:number,form:any=0)
+  update(id:number,form:FormGroup)
   {
     console.log("Button clicked")
     this.userService.updateUser(id,form);
@@ -47,7 +50,7 @@ export class ProfileComponent implements OnInit{
   {
     this.activeChange=true
   }
-  change(id:number,form:any=0)
+  change(id:number,form:FormGroup)
   {
     this.userService.changePassword(id,form)
   }

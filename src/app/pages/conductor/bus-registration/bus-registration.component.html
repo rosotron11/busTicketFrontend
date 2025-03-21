@@ -14,6 +14,11 @@
                 <div [formGroupName]="$index">
                     <input type="text" formControlName="boardingPlace" placeholder="Boarding Place">
                     <input type="time" formControlName="boardingTime" placeholder="Boarding Time">
+                    @if(place.get('boardingTime')?.hasError(('invalidBoardingTime')))
+                    {
+                        Invalid Boarding Time. Must be after {{busRegistration.get('timeOfBoarding')?.value}}
+                        and before {{busRegistration.get('timeOfDropping')?.value}}
+                    }
                     @if (boardingPlaces.length>1) {
                         <button (click)="removeBoardingPlace($index)">-</button>
                     }
@@ -28,6 +33,11 @@
                 <div [formGroupName]="$index">
                     <input type="text" formControlName="droppingPlace" placeholder="Drop Off Place">
                     <input type="time" formControlName="droppingTime" placeholder="Drop Off Time">
+                    @if(place.get('droppingTime')?.hasError(('invalidDroppingTime')))
+                    {
+                        Invalid Dropping Time. Must be before {{busRegistration.get('timeOfDropping')?.value}}
+                        and after {{busRegistration.get('timeOfBoarding')?.value}}
+                    }
                     @if (dropOffPlaces.length>1) {
                         <button (click)="removeDropOffPlace($index)">-</button>
                     }

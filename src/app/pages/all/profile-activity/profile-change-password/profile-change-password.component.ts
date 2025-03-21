@@ -19,6 +19,6 @@ export class ProfileChangePasswordComponent{
   sendSignalforChange()
   {
     console.log(JSON.parse(localStorage.getItem('userDet')!).id)
-    this.sendForm.emit(this.changeForm.value)
+    this.sendForm.emit(this.changeForm)
   }
 }

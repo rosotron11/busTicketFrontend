@@ -14,7 +14,7 @@ export interface ITicket {
     bookingTime: any; // ISO 8601 string format for LocalDateTime
     paymentTime: any; // ISO 8601 string format for LocalDateTime
     email: string;
-    amount: string;
+    amount: number;
     bookingUser: IUser;
-    bus: Bus;
+    bus: IBus;
 }

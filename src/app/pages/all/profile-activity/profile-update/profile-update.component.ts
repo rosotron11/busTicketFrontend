@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IUser } from '../../../../interfaces/user';
 
 @Component({
   selector: 'app-profile-update',
@@ -9,25 +10,23 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class ProfileUpdateComponent implements OnInit{
   
-  @Input() profile:any
+  @Input() profile!: IUser;
   @Output() sendForm=new EventEmitter<any>()
 
   updateForm:FormGroup= new FormGroup({
     id: new FormControl('',[Validators.required]),
     username: new FormControl('',[Validators.required,Validators.minLength(2)]),
-    email:new FormControl('',[Validators.required,Validators.email]),
-    roles:new FormControl('')
+    email:new FormControl('',[Validators.required,Validators.email])
   })
 
   ngOnInit(): void {
     this.updateForm.controls["id"].setValue(this.profile.id);
     this.updateForm.controls["username"].setValue(this.profile.username);
     this.updateForm.controls["email"].setValue(this.profile.email)
-    this.updateForm.controls["roles"].setValue(this.profile.roles)
   }
 
   sendSignalforUpdate()
   {
-    this.sendForm.emit(this.updateForm.value)
+    this.sendForm.emit(this.updateForm)
   }
 }

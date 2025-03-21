@@ -1,6 +1,7 @@
 <table>
     <tr>
         <th>Bus Number</th>
+        <th>Created On</th>
         <th>Vendor</th>
         <th>Source</th>
         <th>Destination</th>
@@ -15,6 +16,7 @@
 @for (bus of buses; track $index) {
         <tr>
             <td>{{bus.busNumber}}</td>   
+            <td>{{bus.createdOn}}</td>
             <td>{{bus.conductor.username}}</td>
             <td>{{bus.source}}</td>
             <td>{{bus.destination}}</td>
