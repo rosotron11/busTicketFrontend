@@ -1,25 +1,13 @@
 <div>
   <nav class="navbar">
-    <div class="nav-left">
-      @if (menuList$ | async; as menuItems) { @for (item of menuItems; track
-      $index) { @if (!['/profile', '/login', '/register',
-      '/logout'].includes(item.path)) {
-      <button
-        class="nav-button"
-        [routerLink]="item.path"
-        routerLinkActive="active-link"
-      >
-        {{ item.title }}
-      </button>
-      } } }
-    </div>
     <div class="nav-logo">
-      <img src="../../../../../public/logo.png" alt="Your Logo" class="logo">
+      <img src="logo.png" alt="Your Logo" class="logo" routerLink="/home"
+      style="cursor: pointer;">
     </div>
+    
     <div class="nav-right">
       @if (menuList$ | async; as menuItems) { @for (item of menuItems; track
-      $index) { @if (['/profile', '/login', '/register',
-      '/logout'].includes(item.path)) {
+      $index) {
       <button
         class="nav-button"
         [routerLink]="item.path"
@@ -27,7 +15,7 @@
       >
         {{ item.title }}
       </button>
-      } } }
+      } } 
     </div>
   </nav>
 </div>

@@ -43,12 +43,12 @@
                         }
                         @if(boardingPlaces.length>1)
                         {
-                            <button (click)="removeBoardingPlace($index)" class="remove-btn">-</button>
+                            <button (click)="removeBoardingPlace($index)" class="remove-btn" type="button">-</button>
                         }
                     </div>
                 }
             
-            <button (click)="addBoardingPlace()" class="add-btn">+</button>
+            <button (click)="addBoardingPlace()" class="add-btn" type="button">+</button>
         </div>
 
         <div formArrayName="dropOffPlaces" class="boarding-dropoff-container">
@@ -65,11 +65,11 @@
                     }
                     @if(dropOffPlaces.length>1)
                     {
-                        <button (click)="removeDropOffPlace($index)" class="remove-btn">-</button>
+                        <button (click)="removeDropOffPlace($index)" class="remove-btn" type="button">-</button>
                     }
                 </div>
             }
-            <button (click)="addDropOffPlace()" class="add-btn">+</button>
+            <button (click)="addDropOffPlace()" class="add-btn" type="button">+</button>
         </div>
 
         <div class="form-group">

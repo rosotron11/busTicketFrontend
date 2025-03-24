@@ -27,13 +27,15 @@
 
 .bus-item {
     display: grid;
-    grid-template-columns: repeat(11, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     grid-gap: 25px;
     padding: 15px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     align-items: center;
+    justify-content: center;
+    text-align: center;
     transition: transform 0.3s ease;
 }
 .action {
@@ -48,6 +50,8 @@
 .actions {
     display: flex;
     gap: 10px;
+    grid-column: span 2;
+    justify-content: center;
 }
 
 button {

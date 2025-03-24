@@ -9,10 +9,10 @@
         <div>Dropping Time</div>
         <div>Number of Seats</div>
         <div>Booked On</div>
-        <div>Paid On</div>
+        <div class="payment">Paid On</div>
         <div>Amount</div>
         <div>Ticket Status</div>
-        <div>Actions</div>
+        <div class="actions">Actions</div>
     </div>
 
     <div class="ticket-list">
@@ -27,7 +27,7 @@
             <div>{{ticket.droppingTime}}</div>
             <div>{{ticket.passengers.length}}</div>
             <div>{{ticket.bookingTime}}</div>
-            <div>
+            <div class="payment">
                 @if(ticket.paymentStatus=='Unpaid') {
                     <select [(ngModel)]="paymentGateway" (change)="paymentChange($event)">
                         <option value="RamroPay" selected>RamroPay</option>
@@ -48,7 +48,7 @@
                     Confirmed
                 }
             </div>
-            <div><button class="cancel-btn" (click)="deleteTicket(ticket)">Cancel Ticket</button></div>
+            <div class="butn"><button class="cancel-btn" (click)="deleteTicket(ticket)">Cancel Ticket</button></div>
         </div>
         }
     </div>

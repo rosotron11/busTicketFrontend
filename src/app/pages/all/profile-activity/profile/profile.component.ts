@@ -5,6 +5,7 @@ import { ProfileChangePasswordComponent } from '../profile-change-password/profi
 import { UserService } from '../../../../services/user.service';
 import { IUser } from '../../../../interfaces/user';
 import { FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -16,11 +17,11 @@ export class ProfileComponent implements OnInit{
   activeUpdate: boolean = false;
   activeChange: boolean = false;
   updateToAPI: boolean=false;
-  constructor(private userService:UserService, private router:Router)
+  profile!: IUser;
+  constructor(private userService:UserService, private router:Router, private toastr:ToastrService)
   {
 
   }
-  profile!: IUser;
   ngOnInit(): void {
     const id=JSON.parse(localStorage.getItem('userDet')!).id
     this.userService.getUserById(id).subscribe((res:IUser)=>
@@ -34,12 +35,11 @@ export class ProfileComponent implements OnInit{
   {
     this.userService.deleteUser(id);
     this.router.navigateByUrl("/home");
-    window.alert("Your Account has been deleted")
+    this.toastr.success("Your Account has been deleted","Success")
   }
 
   update(id:number,form:FormGroup)
   {
-    console.log("Button clicked")
     this.userService.updateUser(id,form);
   }
   showUpdate()

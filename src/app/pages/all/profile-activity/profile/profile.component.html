@@ -1,5 +1,5 @@
 <div class="profile-container">
-    <div class="profile-card" [class.shift-left]="activeUpdate || activeChange">
+    <div class="profile-card">
         <div class="profile-header">
             <h2>{{profile.username}}</h2>
             <p>{{profile.email}}</p>
@@ -12,14 +12,18 @@
         </div>
 
     </div>
-    <div class="child-container">
+    
     @if(activeUpdate)
     {
-        <app-profile-update [profile]="profile" (sendForm)="update(profile.id,$event)" (sendCloseSignal)="closeUpdate()"></app-profile-update>
+        <div class="child-container">
+            <app-profile-update [profile]="profile" (sendForm)="update(profile.id,$event)" (sendCloseSignal)="closeUpdate()"></app-profile-update>
+        </div>
+            
     }
     @if(activeChange)
     {
-        <app-profile-change-password (sendForm)="change(profile.id,$event)" (sendCloseSignal)="closeChange()"></app-profile-change-password>
+        <div class="child-container">
+            <app-profile-change-password (sendForm)="change(profile.id,$event)" (sendCloseSignal)="closeChange()"></app-profile-change-password>
+        </div>
     }
-</div>
 </div>

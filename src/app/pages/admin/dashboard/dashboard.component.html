@@ -3,7 +3,6 @@
       <h1>Bus Ticket Dashboard</h1>
     </div>
     
-    <!-- Overall Stats Card -->
     <div class="stats-card">
       <h2>Total System Stats</h2>
       <div class="stats-row">
@@ -47,31 +46,15 @@
       </div>
     </div>
     
-    <!-- Ticket Stats Card -->
     <div class="stats-card">
-      <h2>Ticket Statistics</h2>
-      <div class="period-selector">
-        <button [class.active]="ticketPeriod === 'daily'" (click)="switchTicketsPeriod('daily')">Daily</button>
-        <button [class.active]="ticketPeriod === 'weekly'" (click)="switchTicketsPeriod('weekly')">Weekly</button>
-        <button [class.active]="ticketPeriod === 'monthly'" (click)="switchTicketsPeriod('monthly')">Monthly</button>
-      </div>
+      <h2>Daily Ticket Statistics</h2>
       
-      <div *ngIf="ticketPeriod === 'daily'" class="date-selector">
+      <div class="date-selector">
         <input type="date" [(ngModel)]="dateForTickets">
         <button (click)="getDailyTicketStats()">Get Daily Stats</button>
       </div>
       
-      <!-- <div *ngIf="ticketPeriod === 'weekly'" class="date-selector">
-        <input type="week" [(ngModel)]="weekForTickets">
-        <button (click)="getWeeklyTicketStats()">Get Weekly Stats</button>
-      </div>
-      
-      <div *ngIf="ticketPeriod === 'monthly'" class="date-selector">
-        <input type="month" [(ngModel)]="monthForTickets">
-        <button (click)="getMonthlyTicketStats()">Get Monthly Stats</button>
-      </div> -->
-      
-      <div *ngIf="dailyTicketStatsPanel && ticketPeriod === 'daily'">
+      <div>
         <h3>For the day: {{dateForTickets | date}}</h3>
         <div class="stats-row">
           <div class="stat-box">
@@ -97,88 +80,20 @@
         </div>
       </div>
       
-      <!-- <div *ngIf="weeklyTicketStatsPanel && ticketPeriod === 'weekly'">
-        <h3>For the week: {{weekStartDateforTicket | date}} - {{weekStartEndforTicket | date}}</h3>
-        <div class="stats-row">
-          <div class="stat-box">
-            <div class="value">{{weeklyTicketStats.totalTicket || 0}}</div>
-            <div class="label">Total Tickets</div>
-          </div>
-          <div class="stat-box">
-            <div class="value">{{weeklyTicketStats.bookedTicket || 0}}</div>
-            <div class="label">Booked but Unpaid</div>
-          </div>
-          <div class="stat-box">
-            <div class="value">{{weeklyTicketStats.paidTicket || 0}}</div>
-            <div class="label">Paid & Confirmed</div>
-          </div>
-          <div class="stat-box">
-            <div class="value">${{weeklyTicketStats.totalAmount || 0}}</div>
-            <div class="label">Total Amount</div>
-          </div>
-          <div class="stat-box">
-            <div class="value">${{weeklyTicketStats.averageAmount || 0}}</div>
-            <div class="label">Avg. Amount Per Ticket</div>
-          </div>
-        </div>
-      </div>
-      
-      <div *ngIf="monthlyTicketStatsPanel && ticketPeriod === 'monthly'">
-        <h3>For the month: {{monthForTickets | date:'MMMM yyyy'}}</h3>
-        <div class="stats-row">
-          <div class="stat-box">
-            <div class="value">{{monthlyTicketStats.totalTicket || 0}}</div>
-            <div class="label">Total Tickets</div>
-          </div>
-          <div class="stat-box">
-            <div class="value">{{monthlyTicketStats.bookedTicket || 0}}</div>
-            <div class="label">Booked but Unpaid</div>
-          </div>
-          <div class="stat-box">
-            <div class="value">{{monthlyTicketStats.paidTicket || 0}}</div>
-            <div class="label">Paid & Confirmed</div>
-          </div>
-          <div class="stat-box">
-            <div class="value">${{monthlyTicketStats.totalAmount || 0}}</div>
-            <div class="label">Total Amount</div>
-          </div>
-          <div class="stat-box">
-            <div class="value">${{monthlyTicketStats.averageAmount || 0}}</div>
-            <div class="label">Avg. Amount Per Ticket</div>
-          </div>
-        </div>
-      </div> -->
-      
       <div class="chart-container">
         <canvas id="ticketsChart"></canvas>
       </div>
     </div>
     
-    <!-- Bus Stats Card -->
     <div class="stats-card">
-      <h2>Bus Statistics</h2>
-      <div class="period-selector">
-        <button [class.active]="busPeriod === 'daily'" (click)="switchBusPeriod('daily')">Daily</button>
-        <button [class.active]="busPeriod === 'weekly'" (click)="switchBusPeriod('weekly')">Weekly</button>
-        <button [class.active]="busPeriod === 'monthly'" (click)="switchBusPeriod('monthly')">Monthly</button>
-      </div>
+      <h2>Daily Bus Statistics</h2>
       
-      <div *ngIf="busPeriod === 'daily'" class="date-selector">
+      <div class="date-selector">
         <input type="date" [(ngModel)]="dateForBus">
         <button (click)="getDailyBusStats()">Get Daily Stats</button>
       </div>
       
-      <!-- <div *ngIf="busPeriod === 'weekly'" class="date-selector">
-        <input type="week" [(ngModel)]="weekForBus">
-        <button (click)="getWeeklyBusStats()">Get Weekly Stats</button>
-      </div>
-      
-      <div *ngIf="busPeriod === 'monthly'" class="date-selector">
-        <input type="month" [(ngModel)]="monthForBus">
-        <button (click)="getMonthlyBusStats()">Get Monthly Stats</button>
-      </div> -->
-      
-      <div *ngIf="dailyBusStatsPanel && busPeriod === 'daily'">
+      <div>
         <h3>For the day: {{dateForBus | date}}</h3>
         <div class="stats-row">
           <div class="stat-box">
@@ -217,28 +132,6 @@
           </div>
         </div>
       </div>
-      
-      <!---
-      <div *ngIf="weeklyBusStatsPanel && busPeriod === 'weekly'">
-        <h3>For the week: {{weekStartDateforBus | date}} - {{weekStartEndforBus | date}}</h3>
-        <div class="stats-row">
-          <div class="stat-box">
-            <div class="value">{{weeklyBusStats.totalVendor || 0}}</div>
-            <div class="label">Total Vendors</div>
-          </div>
-        </div>
-      </div>
-      
-      <div *ngIf="monthlyBusStatsPanel && busPeriod === 'monthly'">
-        <h3>For the month: {{monthForBus | date:'MMMM yyyy'}}</h3>
-        <div class="stats-row">
-          <div class="stat-box">
-            <div class="value">{{monthlyBusStats.totalVendor || 0}}</div>
-            <div class="label">Total Vendors</div>
-          </div>
-        </div>
-      </div>
-    --->
       <div class="chart-container">
         <canvas id="busChart"></canvas>
       </div>

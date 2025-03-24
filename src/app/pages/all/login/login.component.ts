@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,17 +14,25 @@ import { AuthService } from '../../../services/auth.service';
 export class LoginComponent {
 
   constructor(private userService:UserService, private router:Router,
-    private authService:AuthService
+    private authService:AuthService, private toastr:ToastrService
   )
   {
 
   }
   loginForm:FormGroup= new FormGroup({
     usernameOrEmail:new FormControl('',[Validators.required]),
-    password: new FormControl('',[])
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(30),
+      Validators.pattern(
+        '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
+      ),
+    ])
   })
 
   submitForm(){
+    console.log(this.loginForm)
     if (this.loginForm.valid)
     {
     this.userService.loginUser(this.loginForm.value)
@@ -31,7 +40,7 @@ export class LoginComponent {
     }
     else
     {
-      console.log("login error")
+      this.toastr.error("Invalid Password","Error")
     }
   }
   newSignUp()

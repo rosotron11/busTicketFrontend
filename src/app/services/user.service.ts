@@ -36,7 +36,7 @@ export class UserService {
     return this.http.post(this.backendRegister, form, { responseType: 'text' })
       .subscribe((res: any) => {
         if (res === 'Username or email exists') {
-          window.alert("Username or Email exists. Use different.");
+          this.toastr.error("Username or Email exists. Use different.","Error");
         } else {
           const body = JSON.parse(res).body;
           console.log(body);
@@ -46,6 +46,7 @@ export class UserService {
           this.authService.updateAuthState(body);
           
           this.router.navigateByUrl("/home");
+          this.toastr.success("Registered Successfully","Success")
         }
       });
   }
@@ -84,10 +85,11 @@ export class UserService {
     return this.http.put(`${this.backend}/${id}`, form.value, { responseType: 'text' }).subscribe(
       (res: any) => {
         if (res == 'Username or Email Already Exists') {
-          window.alert('Username or Email Already Exists');
+          this.toastr.error('Username or Email Already Exists','Error');
         }
         if (res == 'Updated') {
           this.router.navigateByUrl("/logout");
+          this.toastr.success("Updated. Login Again.","Success")
         }
       }
     );
@@ -96,7 +98,7 @@ export class UserService {
   changePassword(id: number, form: FormGroup) {
     return this.http.post(`${this.backend}/${id}/changepassword`, form.value, { responseType: 'text' }).subscribe(
       (res: any) => {
-        console.log(res);
+        this.toastr.success("Password Changed","Success")
       }
     );
   }

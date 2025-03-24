@@ -1,6 +1,7 @@
 .user-management-container {
     max-width: 1200px;
     margin: 0 auto;
+    margin-top: 50px;
     padding: 20px;
     background-color: #f8f8f8;
     border-radius: 10px;
@@ -41,7 +42,7 @@
 
 .user-list-header {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 2fr 3fr;
     background-color: #e0e0e0;
     padding: 12px;
     color: #333;
@@ -59,12 +60,13 @@
 
 .user-row {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 2fr 1fr;
+    grid-template-columns:1fr 1fr 1fr 2fr 3fr;
     background-color: #fff;
     padding: 12px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     align-items: center;
+    text-align: center;
     transition: transform 0.3s ease;
 }
 

@@ -10,6 +10,10 @@ body{
     margin: 0; 
   }
 
+  .background{
+    margin-top: 40px;
+    opacity: 90%;
+  }
 form {
     max-width: 500px;
     padding: 20px;

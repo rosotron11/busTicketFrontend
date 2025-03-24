@@ -1,60 +1,55 @@
 .ticket-container {
-    max-width: 1200px;
-    margin: auto;
-    margin-top: 50px;
     padding: 20px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.ticket-header,
-.ticket-item {
-    display: grid;
-    grid-template-columns: repeat(13, 1fr); /* 12 equal columns */
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.ticket-header div {
-    font-weight: bold;
-    color: black;
-    text-align: center;
-}
-
-.ticket-item div {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+    background-color: #f7f7f7;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 80px;
 }
 
 .ticket-header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-gap: 15px;
+    background-color: #e0e0e0;
+    padding: 15px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
     border-radius: 8px;
 }
 
 .ticket-list {
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
-.ticket-item:hover {
-    background-color: #f1f1f1;
-    transform: translateY(-3px);
-    transition: background-color 0.3s, transform 0.3s;
+.ticket-item {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-gap: 25px;
+    padding: 15px;
+    background-color: #ffffff;
     border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.3s ease;
 }
 
-.ticket-item div {
-    padding: 10px;
+.actions{
+    grid-column: span 2;
 }
-
-.ticket-item div:nth-child(13) {
-    text-align: left;
-    padding-left: 15px;
+.payment{
+    grid-column: span 2;
+}
+.butn{
+    grid-column: span 2;
+}
+.ticket-item:hover {
+    transform: translateY(-3px);
 }
 
 .pay-btn {

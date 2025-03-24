@@ -1,51 +1,139 @@
-<div>
-    Total Tickets: {{totalStats.totalTicket}} <br>
-    Total Booked but Unpaid Tickets: {{totalStats.bookedTicket}} <br>
-    Total Paid & Confirmed Tickets: {{totalStats.paidTicket}} <br>
-    Total Payment Amount:{{totalStats.totalAmount}} <br>
-    Total Vendor:{{totalStats.totalVendor}} <br>
-    Total Bus:{{totalStats.totalBus}} <br>
-    Average Amount Per Ticket: Rs. {{totalStats.averageAmountPerTicket}}<br>
-    Average Amount Per Bus: Rs. {{totalStats.averageAmountPerBus}}<br>
-</div>
-<div>
-    <h1> Daily Payment & Booking Stats</h1>
-    <input type="date" [(ngModel)]="dateForTickets">
-    <button (click)="getDailyTicketStats()">Get Daily Stats</button><br>
-    @if(dateForTickets!=null && dailyTicketStatsPanel){
-        For the day:{{dateForTickets}} <br>
-        Total Tickets: {{dailyTicketStats.totalTicket}} <br>
-        Total Booked but Unpaid Tickets: {{dailyTicketStats.bookedTicket}} <br>
-        Total Paid & Confirmed Tickets: {{dailyTicketStats.paidTicket}} <br>
-        Amount for the day: Rs. {{dailyTicketStats.totalAmount}} <br>
-        Average Amount Per Paid Ticket: Rs. {{dailyTicketStats.averageAmount}} <br>
-    }
-</div>
-<div>
-    <h1> Weekly Payment & Booking Stats</h1>
-</div>
-<div>
-    <h1> Monthly Payment & Booking Stats</h1>
-</div>
-<div>
-    <h1>Daily Bus Stats</h1>
-    <input type="date" [(ngModel)]="dateForBus">
-    <button (click)="getDailyBusStats()">Get Bus Daily Stats</button><br>
-    @if(dateForBus!=null && dailyBusStatsPanel){
-        For the day: {{dateForBus}}<br>
-        Total Vendor: {{dailyBusStats.totalVendor}}<br>
-        Total Bus: {{dailyBusStats.totalBus}}<br>
-        Total Passengers: {{dailyBusStats.totalPassengers}}<br>
-        Average Passenger Per Bus: {{dailyBusStats.avPassengerPerBus}}<br>
-        Total Journey Time: {{dailyBusStats.totalTime}}<br>
-        Average Journey Time Per Bus: {{dailyBusStats.avJourneyTime}}<br>
-        Total Amount Made: Rs. {{dailyBusStats.totalAmount}}<br>
-        Average Amount Made Per Bus: Rs. {{dailyBusStats.averageAmount}}<br>
-    }
-</div>
-<div>
-    <h1>Weekly Bus Stats</h1>
-</div>
-<div>
-    <h1>Monthly Bus Stats</h1>
+<div class="dashboard">
+  <div class="header">
+    <h1>Conductor Dashboard</h1>
+  </div>
+  
+  <div class="stats-card">
+    <h2>Total Stats</h2>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="value">{{totalStats.totalTicket || 0}}</div>
+        <div class="label">Total Tickets</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">{{totalStats.bookedTicket || 0}}</div>
+        <div class="label">Booked but Unpaid</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">{{totalStats.paidTicket || 0}}</div>
+        <div class="label">Paid & Confirmed</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">Rs. {{totalStats.totalAmount || 0}}</div>
+        <div class="label">Total Payment Amount</div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="value">{{totalStats.totalVendor || 0}}</div>
+        <div class="label">Total Vendors</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">{{totalStats.totalBus || 0}}</div>
+        <div class="label">Total Buses</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">Rs. {{totalStats.averageAmountPerTicket || 0}}</div>
+        <div class="label">Avg. Amount Per Ticket</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">Rs. {{totalStats.averageAmountPerBus || 0}}</div>
+        <div class="label">Avg. Amount Per Bus</div>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas id="overallChart"></canvas>
+    </div>
+  </div>
+  
+  <div class="stats-card">
+    <h2>Daily Ticket Statistics</h2>
+    
+    <div class="date-selector">
+      <input type="date" [(ngModel)]="dateForTickets">
+      <button (click)="getDailyTicketStats()">Get Daily Stats</button>
+    </div>
+    
+    <div>
+      <h3>For the day: {{dateForTickets}}</h3>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="value">{{dailyTicketStats.totalTicket || 0}}</div>
+          <div class="label">Total Tickets</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">{{dailyTicketStats.bookedTicket || 0}}</div>
+          <div class="label">Booked but Unpaid</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">{{dailyTicketStats.paidTicket || 0}}</div>
+          <div class="label">Paid & Confirmed</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">Rs. {{dailyTicketStats.totalAmount || 0}}</div>
+          <div class="label">Total Amount</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">Rs. {{dailyTicketStats.averageAmount || 0}}</div>
+          <div class="label">Avg. Amount Per Ticket</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="chart-container">
+      <canvas id="ticketsChart"></canvas>
+    </div>
+  </div>
+  
+  <div class="stats-card">
+    <h2>Daily Bus Statistics</h2>
+    
+    <div class="date-selector">
+      <input type="date" [(ngModel)]="dateForBus">
+      <button (click)="getDailyBusStats()">Get Daily Stats</button>
+    </div>
+    
+    <div>
+      <h3>For the day: {{dateForBus}}</h3>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="value">{{dailyBusStats.totalVendor || 0}}</div>
+          <div class="label">Total Vendors</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">{{dailyBusStats.totalBus || 0}}</div>
+          <div class="label">Total Buses</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">{{dailyBusStats.totalPassengers || 0}}</div>
+          <div class="label">Total Passengers</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">{{dailyBusStats.avPassengerPerBus || 0}}</div>
+          <div class="label">Avg. Passengers Per Bus</div>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="value">{{dailyBusStats.totalTime || '0h 0m'}}</div>
+          <div class="label">Total Journey Time</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">{{dailyBusStats.avJourneyTime || '0h 0m'}}</div>
+          <div class="label">Avg. Journey Time</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">Rs. {{dailyBusStats.totalAmount || 0}}</div>
+          <div class="label">Total Amount</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">Rs. {{dailyBusStats.averageAmount}}</div>
+          <div class="label">Avg. Amount Per Bus</div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas id="busChart"></canvas>
+    </div>
+  </div>
 </div>

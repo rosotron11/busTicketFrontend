@@ -1,10 +1,10 @@
 .form-container {
     display: flex;
-    margin-top: 200px;
+    margin-top: 350px;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f7f7f7;
+    background-color: #ffffff;
     padding: 20px;
 }
 
@@ -36,6 +36,7 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 .form-input:focus {

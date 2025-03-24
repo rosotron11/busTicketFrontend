@@ -21,8 +21,8 @@ export class BusRegistrationComponent implements OnInit{
       busRegistration:FormGroup = new FormGroup({
       busNumber: new FormControl('',[Validators.required]),
       vendorName: new FormControl('',[Validators.required]),
-      source: new FormControl('',[Validators.required]),
-      destination: new FormControl('',[Validators.required]),
+      source: new FormControl('',[Validators.required, this.districtValidator]),
+      destination: new FormControl('',[Validators.required, this.districtValidator]),
       timeOfBoarding: new FormControl('',[Validators.required]),
       timeOfDropping: new FormControl('',[Validators.required]),
       dateOfJourney: new FormControl('',[Validators.required]),
@@ -67,6 +67,22 @@ export class BusRegistrationComponent implements OnInit{
       }
     }
 
+    districtValidator(control:AbstractControl):{[key:string]:any}|null{
+      const districts = [
+        'Achham', 'Arghakhanchi', 'Baglung', 'Baitadi', 'Bajhang', 'Bajura', 'Banke', 'Bara', 'Bardiya', 'Bhaktapur', 
+        'Bhojpur', 'Chitwan', 'Dadeldhura', 'Dailekh', 'Dang', 'Darchula', 'Dhading', 'Dhankuta', 'Dhanusha', 'Dolakha', 
+        'Dolpa', 'Doti', 'Eastern Rukum', 'Gorkha', 'Gulmi', 'Humla', 'Ilam', 'Jajarkot', 'Jhapa', 'Jumla', 'Kailali', 
+        'Kalikot', 'Kanchanpur', 'Kapilvastu', 'Kaski', 'Kathmandu', 'Kavrepalanchok', 'Khotang', 'Lalitpur', 'Lamjung', 
+        'Mahottari', 'Makwanpur', 'Manang', 'Morang', 'Mugu', 'Mustang', 'Myagdi', 'Nawalpur', 'Nuwakot', 'Okhaldhunga', 
+        'Palpa', 'Panchthar', 'Parasi', 'Parbat', 'Parsa', 'Pyuthan', 'Ramechhap', 'Rasuwa', 'Rautahat', 'Rolpa', 
+        'Rupandehi', 'Salyan', 'Sankhuwasabha', 'Saptari', 'Sarlahi', 'Sindhuli', 'Sindhupalchok', 'Siraha', 'Solukhumbu', 
+        'Sunsari', 'Surkhet', 'Syangja', 'Tanahun', 'Taplejung', 'Tehrathum', 'Udayapur', 'Western Rukum'
+      ];
+      
+      const isValid = districts.includes(control.value);
+      return isValid ? null : { 'invalidDistrict': { value: control.value } };
+    }
+
     boardingTimeValidator(control: AbstractControl): { [key: string]: boolean } | null {
       const timeOfBoarding = new Date(`1970-01-01T${this.busRegistration.controls['timeOfBoarding'].value}:00`);
       const timeOfDropping = new Date(`1970-01-01T${this.busRegistration.controls['timeOfDropping'].value}:00`);
@@ -100,7 +116,7 @@ export class BusRegistrationComponent implements OnInit{
         this.busService.addBus(this.busRegistration)
         setTimeout(() => {
           this.router.navigateByUrl("/my-bus");
-        }, 100);
+        }, 500);
       }
       else
       {

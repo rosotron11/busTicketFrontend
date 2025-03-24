@@ -1,16 +1,27 @@
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #f8f9fa; /* Light background */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #f8f9fa; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  .nav-logo {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    margin-left: -20px;
+    margin-top: -15px;
+  }
+  
+  .logo {
+    height: 50px;
   }
 
-  .nav-left,
   .nav-right {
     display: flex;
-    gap: 10px; /* Space between buttons */
+    gap: 10px;
   }
 
   .nav-button {
@@ -35,11 +46,4 @@
     color: #fff;
   }
 
-  .nav-logo {
-    display: flex;
-    align-items: center;
-  }
-
-  .logo {
-    height: 40px;
-  }
+  

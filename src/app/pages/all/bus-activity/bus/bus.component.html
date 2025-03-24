@@ -14,9 +14,10 @@
             <p class="seats">Seats Left: {{ bus.totalSeats - bus.bookedSeats }} / {{ bus.totalSeats }}</p>
             <button class="book-btn" (click)="bookBus(bus)">Book</button>
         </div>
+        
+        @if (activeBooking && activeBus==bus) { 
+            <app-booking [activeBus]="activeBus"></app-booking> 
+        }
+
     }
 </div>
-
-@if (activeBooking) { 
-    <app-booking [activeBus]="activeBus"></app-booking> 
-}

@@ -25,17 +25,17 @@
             <div>{{ bus.timeOfDropping }}</div>
             <div>{{ bus.bookedSeats }}</div>
             <div>{{ bus.totalSeats }}</div>
-            <div>{{ bus.price }}</div>
+            <div>Rs. {{ bus.price }}</div>
             <div class="actions">
-                <button (click)="deleteBus(bus)">Remove Bus</button>
-                <button (click)="seePassengers(bus)">See Passengers</button>
+                <button (click)="deleteBus(bus)">❌</button>
+                <button (click)="seePassengers(bus)">👥</button>
             </div>
-            @if (activatedTicket && selectedBus) {
-                <div class="passenger-panel">
-                    <app-bus-passengers [bus]="selectedBus" (closeChild)="closePanel()"></app-bus-passengers>
-                </div>
-            }
         </div>
+        @if (activatedTicket && selectedBus==bus) {
+            <div class="passenger-panel">
+                <app-bus-passengers [bus]="selectedBus" (closeChild)="closePanel()"></app-bus-passengers>
+            </div>
+        }
     }
     </div>
 </div>

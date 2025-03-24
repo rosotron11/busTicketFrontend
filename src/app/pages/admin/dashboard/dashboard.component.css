@@ -1,7 +1,7 @@
-/* dashboard.component.css */
 .dashboard {
     max-width: 1200px;
     margin: 0 auto;
+    margin-top: 70px;
     padding: 20px;
     font-family: Arial, sans-serif;
   }
@@ -88,36 +88,13 @@
     font-weight: bold;
   }
   
-  input[type="date"],
-  input[type="week"],
-  input[type="month"] {
+  input[type="date"] {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
   }
   
-  .period-selector {
-    display: flex;
-    justify-content: space-between;
-    background-color: #eee;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 15px;
-  }
-  
-  .period-selector button {
-    flex: 1;
-    padding: 10px;
-    background-color: transparent;
-    color: #555;
-    border: none;
-  }
-  
-  .period-selector button.active {
-    background-color: #4a90e2;
-    color: white;
-  }
-  
+
   @media (max-width: 768px) {
     .stats-row {
       flex-direction: column;

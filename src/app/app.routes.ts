@@ -8,15 +8,12 @@ import { LoginComponent } from './pages/all/login/login.component';
 import { SearchComponent } from './pages/all/search/search.component';
 import { ProfileComponent } from './pages/all/profile-activity/profile/profile.component';
 import { RegisterComponent } from './pages/all/register/register.component';
-import { BusComponent } from './pages/all/bus-activity/bus/bus.component';
 import { MyBusComponent } from './pages/conductor/my-bus/my-bus.component';
 import { BusRegistrationComponent } from './pages/conductor/bus-registration/bus-registration.component';
 import { TicketComponent } from './pages/all/ticket/ticket.component';
 import { RamroPayComponent } from './pages/all/payment-gateway/ramro-pay/ramro-pay.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ConductorDashboardComponent } from './pages/conductor/conductor-dashboard/conductor-dashboard.component';
-import { AppComponent } from './app.component';
-import { NavBarComponent } from './pages/all/nav-bar/nav-bar.component';
 
 export const routes: Routes = [
     {
@@ -32,10 +29,6 @@ export const routes: Routes = [
         path:"register",
         component:RegisterComponent,
         canActivate:[loginAuthGuard]
-    },
-    {
-        path:"bus",
-        component:BusComponent
     },
     {
         path:"my-bus",

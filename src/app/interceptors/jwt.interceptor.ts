@@ -30,9 +30,8 @@ export class JWTInterceptor implements HttpInterceptor
       return next.handle(newCloneRequest).pipe(
         catchError((error:HttpErrorResponse)=>{
           console.log(error)
-          if(error.status==401)
+          if(error.status==403)
           {
-            authService.logOut();
             router.navigate(['/logout']);
           }
           return throwError(()=>error)

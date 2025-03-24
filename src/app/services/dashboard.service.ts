@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { AllTimeStats } from '../interfaces/response/AllTimeStats';
 import { DailyTicketStats } from '../interfaces/response/DailyTicketStats';
 import { DailyBusStats } from '../interfaces/response/DailyBusStats';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-  
   backendURL:string="http://localhost:8080/dashboard"
 
   constructor(private http:HttpClient) { }

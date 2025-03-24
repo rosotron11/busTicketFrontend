@@ -12,6 +12,9 @@ import { IBus } from '../../../../interfaces/bus';
   styleUrl: './booking.component.css'
 })
 export class BookingComponent implements  OnInit{
+closeUpdatePanel() {
+throw new Error('Method not implemented.');
+}
   @Input() activeBus!:IBus
   id = JSON.parse(localStorage.getItem('userDet')!);
   jsonID = { id: this.id.id };

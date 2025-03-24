@@ -1,0 +1,106 @@
+
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 80px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #4a90e2;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .stats-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .stats-card h2 {
+    margin-top: 0;
+    color: #4a90e2;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+  
+  .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .stat-box {
+    flex: 1;
+    min-width: 150px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  .stat-box .value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .stat-box .label {
+    font-size: 12px;
+    color: #777;
+    margin-top: 5px;
+  }
+  
+  .chart-container {
+    height: 300px;
+    margin-top: 20px;
+  }
+  
+  .date-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+  }
+  
+  button {
+    padding: 8px 15px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #3a7bc8;
+  }
+  
+  button.active {
+    background-color: #3a7bc8;
+    font-weight: bold;
+  }
+  
+  input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    .stats-row {
+      flex-direction: column;
+    }
+    
+    .chart-container {
+      height: 250px;
+    }
+  }

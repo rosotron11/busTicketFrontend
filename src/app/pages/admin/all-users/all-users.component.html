@@ -17,31 +17,37 @@
     </div>
 
     <div class="user-list">
-        <div class="user-row" *ngFor="let user of displayUsers">
-            <div>{{ user.username }}</div>
-            <div>{{ user.email }}</div>
-            <div>{{ user.roles }}</div>
-            <div>{{ user.registeredOn }}</div>
-            <div class="actions">
-                <ng-container *ngIf="user.roles === 'conductor'">
+        @for (user of displayUsers; track $index) {
+            <div class="user-row">
+                <div>{{ user.username }}</div>
+                <div>{{ user.email }}</div>
+                <div>{{ user.roles }}</div>
+                <div>{{ user.registeredOn }}</div>
+                <div class="actions">
+                    @if (user.roles === 'conductor') {
                     <button class="btn action-btn" (click)="showBus(user)">Show Bus</button>
                     <button class="btn action-btn" (click)="showTicket(user)">Show Ticket</button>
-                </ng-container>
-                <ng-container *ngIf="user.roles === 'passenger'">
+                    }
+                    @if (user.roles==='passenger'){
                     <button class="btn action-btn" (click)="showTicket(user)">Show Ticket</button>
-                </ng-container>
-                <button class="btn delete-btn" (click)="delete(user)">Delete</button>
+                    }
+                    @if(user.roles!=="admin")
+                    {
+                        <button class="btn delete-btn" (click)="delete(user)">Delete</button>
+                    }
+                </div>
+
             </div>
-            <div *ngIf="activatedBusPanel && selectedUser === user" class="panel">
+            @if (activatedBusPanel && selectedUser === user) {
+            <div class="panel">
                 <app-show-bus [user]="selectedUser" (closeChild)="closeBusPanel()"></app-show-bus>
             </div>
-        
-            <div *ngIf="activatedTicketPanel && selectedUser === user" class="panel">
+            }
+            @if (activatedTicketPanel && selectedUser === user) {
+            <div class="panel">
                 <app-show-ticket [user]="selectedUser" (closeChild)="closeTicketPanel()"></app-show-ticket>
             </div>
-        </div>
-        
+            }
+        }
     </div>
-
-    
 </div>
