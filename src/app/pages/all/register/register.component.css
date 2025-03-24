@@ -1,0 +1,70 @@
+form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.period-selector {
+  display: flex;
+  justify-content: space-between;
+}
+
+.period-selector button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  border-radius: 5px;
+}
+
+.period-selector button.active {
+  background: #007bff;
+  color: white;
+}
+
+button[type="submit"], .login-button {
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover, .login-button:hover {
+  background: #0056b3;
+}
+
+div p {
+  text-align: center;
+}
+
+div p button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+div p button:hover {
+  text-decoration: underline;
+}

@@ -60,11 +60,11 @@ export class BookingComponent implements  OnInit{
     return this.bookingForm.get('passengers') as FormArray;
   }
 
-  addPassenger()
+  addPassenger(num:number)
   {
     this.passengers.push(new FormGroup({
       name:new FormControl('',[Validators.required]),
-      seatNo:new FormControl('',[Validators.required])
+      seatNo:new FormControl(num,[Validators.required])
     }))
   }
   removePassenger(index:number)
@@ -91,23 +91,34 @@ export class BookingComponent implements  OnInit{
 
   selectSeat(num:number)
   {
-    if(this.selectedSeats.includes(num))
-    {
-      window.alert("Seat Already selected")
-    }
-    else if(this.bookedSeats.includes(num))
+    if(this.bookedSeats.includes(num))
     {
       window.alert("Seat Booked selected")
     }
     else{
-      this.passengers.push(new FormGroup({
-        name:new FormControl('',[Validators.required]),
-        seatNo:new FormControl(num,[Validators.required])
-      }))
-      this.selectedSeats.push(num)
-      this.amount=this.selectedSeats.length*this.activeBus.price
+      const selectedIndex = this.selectedSeats.indexOf(num);
+  
+      if (selectedIndex > -1) {
+        this.selectedSeats.splice(selectedIndex, 1);
+        this.removePassengerFromSeat(num);
+      } else {
+        this.selectedSeats.push(num);
+        this.addPassenger(num);
+      }
+    
+      this.amount = this.selectedSeats.length * this.activeBus.price;
     }
   }
+  removePassengerFromSeat(num: number) {
+    const index = this.passengers.controls.findIndex(control => control.get('seatNo')?.value === num);
+    if(this.passengers.length>0)
+    {
+        this.selectedSeats=this.selectedSeats.filter(item => item !== num)
+        this.passengers.removeAt(index);
+        this.amount=this.selectedSeats.length*this.activeBus.price
+    };
+  }
+
   payBus(bus:IBus)
   {
     this.bookingForm.controls['bus'].setValue(JSON.parse(`{"id":${bus.id}}`))

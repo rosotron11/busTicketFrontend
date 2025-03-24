@@ -16,6 +16,7 @@ export class RegisterComponent {
   {
 
   }
+  roles:string='passenger'
   registerForm: FormGroup = new FormGroup({
     username: new FormControl('',[Validators.required,Validators.minLength(2)]),
     password: new FormControl('',[Validators.required,Validators.minLength(2)]),
@@ -35,5 +36,9 @@ export class RegisterComponent {
   oldLogin()
   {
     this.router.navigateByUrl("login")
+  }
+  switchRoles(roles: string) {
+    this.roles=roles;
+    this.registerForm.controls['roles'].setValue(roles);
   }
 }

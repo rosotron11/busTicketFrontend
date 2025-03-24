@@ -5,6 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { SearchResponse } from '../interfaces/response/SearchResponse';
 import { ITicket } from '../interfaces/ticket';
 import { catchError, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { catchError, throwError } from 'rxjs';
 export class BusService {
 
   backend= "http://localhost:8080/bus"
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private toaster:ToastrService) { }
 
   getBus()
   {
@@ -33,17 +34,16 @@ export class BusService {
   {
     this.http.post(this.backend,form.value,{responseType:'text'})
     .pipe(catchError((error:HttpErrorResponse)=>{
-      window.alert(error.error);
       return throwError(()=>error)
     }))
     .subscribe(
       (res:any)=>{
         if(res=='Drop before Board'){
-          window.alert("Dropping Time is Before Boarding Time")
+          this.toaster.error('Dropping Time is Before Boarding Time','Error')
         }
         else if(res=='Created')
         {
-          window.alert("Created")
+          this.toaster.success('Bus Created Successfully','Success')
         }
       }
     )

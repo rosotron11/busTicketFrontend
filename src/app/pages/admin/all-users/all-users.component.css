@@ -1,0 +1,129 @@
+.user-management-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+}
+
+.user-management-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-management-header h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.user-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.user-list-header {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 2fr 1fr;
+    background-color: #e0e0e0;
+    padding: 12px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user-row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 2fr 1fr;
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.user-row:hover {
+    transform: translateY(-2px);
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn {
+    background-color: #2196f3;
+    color: white;
+}
+
+.action-btn:hover {
+    background-color: #1976d2;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+}
+
+.panel {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

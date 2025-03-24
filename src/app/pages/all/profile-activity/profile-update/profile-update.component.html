@@ -1,6 +1,17 @@
-<form [formGroup]="updateForm" (ngSubmit)="sendSignalforUpdate()">
-    <input type="number" name="id" formControlName="id" hidden>
-    <input type="text" placeholder="username" name="username" formControlName="username">
-    <input type="email" placeholder="email" formControlName="email">
-    <button type="submit">Update</button>
-</form>
+<div class="update-container">
+    <div class="update-card">
+        <button class="close-btn" (click)="closeUpdatePanel()">×</button>
+
+        <h2>Update Your Profile</h2>
+        <form [formGroup]="updateForm" (ngSubmit)="sendSignalforUpdate()" class="update-form">
+            <div class="form-group">
+                <input type="text" placeholder="Username" name="username" formControlName="username" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Email Address" formControlName="email" class="form-input" required>
+            </div>
+            <input type="number" name="id" formControlName="id" hidden>
+            <button type="submit" class="submit-btn">Update</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+/* Base styles */
+.bus-search-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+  }
+  
+  .bus-search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .bus-search-legend {
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  
+  .bus-search-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .bus-search-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+  }
+  
+  .bus-search-select,
+  .bus-search-input {
+    flex: 1 1 200px;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #505050;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease;
+  }
+  
+  .bus-search-select:focus,
+  .bus-search-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+  }
+  
+  .bus-search-button {
+    flex: 1 1 120px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bus-search-button:hover {
+    background-color: #3a7bc8;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .bus-search-controls {
+      flex-direction: column;
+    }
+    
+    .bus-search-select,
+    .bus-search-input,
+    .bus-search-button {
+      width: 100%;
+    }
+  }
+  
+  /* Bus results section */
+  .bus-results {
+    margin-top: 25px;
+  }

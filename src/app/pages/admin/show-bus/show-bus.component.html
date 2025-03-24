@@ -1,42 +1,36 @@
-<table>
-    <tr>
-        <th>Bus Number</th>
-        <th>Created On</th>
-        <th>Vendor</th>
-        <th>Source</th>
-        <th>Destination</th>
-        <th>Date of Journey</th>
-        <th>Time of Boarding</th>
-        <th>Time of Dropping</th>
-        <th>Booked Seats</th>
-        <th>Total Seats</th>
-        <th>Price</th>
-        <th>Actions</th>
-    </tr>
-@for (bus of buses; track $index) {
-        <tr>
-            <td>{{bus.busNumber}}</td>   
-            <td>{{bus.createdOn}}</td>
-            <td>{{bus.conductor.username}}</td>
-            <td>{{bus.source}}</td>
-            <td>{{bus.destination}}</td>
-            <td>{{bus.dateOfJourney}}</td>
-            <td>{{bus.timeOfBoarding}}</td>
-            <td>{{bus.timeOfDropping}}</td>
-            <td>{{bus.bookedSeats}}</td>
-            <td>{{bus.totalSeats}}</td>
-            <td>{{bus.price}}</td>
-            <td><button (click)="deleteBus(bus)">Remove Bus</button></td>
-            <td><button (click)="seePassengers(bus)">See Passengers</button></td>
-        </tr>
-        @if(activatedTicket && selectedBus===bus)
-        {
-            <tr>
-                <td colspan="10">
-                    <app-bus-passengers [bus]="selectedBus" (closeChild)="closePanel()"></app-bus-passengers>
-                </td>
-            </tr>
+<div class="bus-management-container">
+    <h2 class="title">Bus Management</h2>
+
+    <div class="bus-list">
+        @for (bus of buses; track $index) {
+        <div class="bus-card">
+            <div class="bus-header">
+                <h3>🚌 {{ bus.busNumber }}</h3>
+                <span class="created-date">Created: {{ bus.createdOn }}</span>
+            </div>
+
+            <div class="bus-info">
+                <p><strong>Vendor:</strong> {{ bus.conductor.username }}</p>
+                <p><strong>Route:</strong> {{ bus.source }} → {{ bus.destination }}</p>
+                <p><strong>Date of Journey:</strong> {{ bus.dateOfJourney }}</p>
+                <p><strong>Time:</strong> {{ bus.timeOfBoarding }} - {{ bus.timeOfDropping }}</p>
+                <p><strong>Seats:</strong> {{ bus.bookedSeats }}/{{ bus.totalSeats }}</p>
+                <p><strong>Price:</strong> Rs. {{ bus.price }}</p>
+            </div>
+
+            <div class="bus-actions">
+                <button class="delete-btn" (click)="deleteBus(bus)">❌ Remove Bus</button>
+                <button class="view-btn" (click)="seePassengers(bus)">👥 View Passengers</button>
+            </div>
+
+            @if (activatedTicket && selectedBus==bus) {
+                <div class="passenger-panel">
+                <app-bus-passengers [bus]="selectedBus" (closeChild)="closePanel()"></app-bus-passengers>
+                </div>
+            }
+        </div>
         }
-}
-</table>
-<button (click)="sendCloseSignal()">Close</button>
+    </div>
+
+    <button class="close-btn" (click)="sendCloseSignal()">Close</button>
+</div>

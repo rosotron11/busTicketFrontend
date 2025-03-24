@@ -9,6 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class ProfileChangePasswordComponent{
   @Output() sendForm=new EventEmitter<any>();
+  @Output() sendCloseSignal=new EventEmitter<any>();
 
   changeForm:FormGroup=new FormGroup({
     id:new FormControl(`${JSON.parse(localStorage.getItem('userDet')!).id}`),
@@ -20,5 +21,9 @@ export class ProfileChangePasswordComponent{
   {
     console.log(JSON.parse(localStorage.getItem('userDet')!).id)
     this.sendForm.emit(this.changeForm)
+  }
+  closeChangePanel()
+  {
+    this.sendCloseSignal.emit();
   }
 }

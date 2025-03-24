@@ -1,0 +1,131 @@
+.bus-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.bus-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.bus-card:hover {
+    transform: translateY(-5px);
+}
+
+.bus-card h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.bus-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.bus-card .seats {
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 10px;
+}
+
+button.book-btn {
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+button.book-btn:hover {
+    background: #0056b3;
+}
+
+.no-bus {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* Booking Page Styles */
+.booking-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.seat-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.seat {
+    width: 50px;
+    height: 50px;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.seat.selected {
+    background: red;
+    color: white;
+}
+
+.seat.booked {
+    background: #666;
+    color: white;
+    cursor: not-allowed;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.booking-form input, .booking-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.booking-form button {
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.booking-form button:hover {
+    background: #0056b3;
+}

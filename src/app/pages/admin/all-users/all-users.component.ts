@@ -5,10 +5,12 @@ import { BusService } from '../../../services/bus.service';
 import { ShowBusComponent } from "../show-bus/show-bus.component";
 import { ShowTicketComponent } from "../show-ticket/show-ticket.component";
 import { IUser } from '../../../interfaces/user';
+import { NgModel } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-all-users',
-  imports: [ShowBusComponent, ShowTicketComponent],
+  imports: [ShowBusComponent, ShowTicketComponent, CommonModule],
   templateUrl: './all-users.component.html',
   styleUrl: './all-users.component.css'
 })

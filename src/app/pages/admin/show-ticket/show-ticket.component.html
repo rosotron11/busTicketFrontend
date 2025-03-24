@@ -1,31 +1,36 @@
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Seat Number</th>
-        <th>Ticket Number</th>
-        <th>Boarding Place</th>
-        <th>Dropping Off Place</th>
-        <th>Boarding Time</th>
-        <th>Dropping Time</th>
-        <th>Ticket Status</th>
-        <th>Actions</th>
-    </tr>
+<div class="ticket-management">
+    <h2 class="title">🎟️ Passenger Tickets</h2>
 
-@for (ticket of tickets; track $index) {
-        @for(passenger of ticket.passengers;track $index)
-        {
-            <tr>
-                <td>{{passenger['name']}}</td>
-                <td>{{passenger['seatNo']}}</td>
-                <td>{{ticket.ticketNumber}}</td>
-                <td>{{ticket.source}}</td>
-                <td>{{ticket.destination}}</td>
-                <td>{{ticket.boardingTime}}</td>
-                <td>{{ticket.droppingTime}}</td>
-                <td>{{ticket.paymentStatus}}</td>
-            </tr>
+    <div class="ticket-grid">
+        @for (ticket of tickets; track $index) {
+        <div class="ticket-card">
+            <div class="ticket-header">
+                <h3>Ticket #{{ ticket.ticketNumber }}</h3>
+                <span class="status" [ngClass]="{'paid': ticket.paymentStatus === 'Paid', 'unpaid': ticket.paymentStatus !== 'Paid'}">
+                    {{ ticket.paymentStatus }}
+                </span>
+            </div>
+
+            <div class="ticket-info">
+                <p><strong>Boarding:</strong> {{ ticket.source }} at {{ ticket.boardingTime }}</p>
+                <p><strong>Drop-Off:</strong> {{ ticket.destination }} at {{ ticket.droppingTime }}</p>
+                <p><strong>Passengers:</strong></p>
+                
+                <ul>
+                    @for (passenger of ticket.passengers; track $index) {
+                    <li>
+                        <strong>{{ passenger['name'] }}</strong> - Seat {{ passenger['seatNo'] }}
+                    </li>
+                }
+                </ul>
+            </div>
+
+            <div class="ticket-actions">
+                <button class="cancel-btn" (click)="deleteTicket(ticket)">❌ Cancel Ticket</button>
+            </div>
+        </div>
         }
-        <button (click)="deleteTicket(ticket)">Cancel Ticket</button>
-}
-</table>
-<button (click)="sendCloseSignal()">Close</button>
+    </div>
+
+    <button class="close-btn" (click)="sendCloseSignal()">Close</button>
+</div>

@@ -1,52 +1,84 @@
-<div>
-    <form [formGroup]="busRegistration" (ngSubmit)="submitForm()">
-        <input type="text" placeholder="Bus Number" formControlName="busNumber">
-        <input type="text" placeholder="Vendor Name" formControlName="vendorName">
-        <input type="text" placeholder="Source" formControlName="source">
-        <input type="text" placeholder="Destination" formControlName="destination">
-        <input type="time" placeholder="Time of Boarding" formControlName="timeOfBoarding">
-        <input type="time" placeholder="Time of Dropping" formControlName="timeOfDropping">
-        <input type="date" placeholder="Date of Journey" formControlName="dateOfJourney">
-        <input type="number" placeholder="Total Seats" formControlName="totalSeats">
-        <div formArrayName="boardingPlaces">
-            @for (place of boardingPlaces.controls; track $index) 
-            {
-                <div [formGroupName]="$index">
-                    <input type="text" formControlName="boardingPlace" placeholder="Boarding Place">
-                    <input type="time" formControlName="boardingTime" placeholder="Boarding Time">
-                    @if(place.get('boardingTime')?.hasError(('invalidBoardingTime')))
-                    {
-                        Invalid Boarding Time. Must be after {{busRegistration.get('timeOfBoarding')?.value}}
-                        and before {{busRegistration.get('timeOfDropping')?.value}}
-                    }
-                    @if (boardingPlaces.length>1) {
-                        <button (click)="removeBoardingPlace($index)">-</button>
-                    }
-                </div>
-            }
-            <button (click)="addBoardingPlace()">+</button>
+<div class="form-container">
+    <form [formGroup]="busRegistration" (ngSubmit)="submitForm()" class="registration-form">
+        <h2 class="form-title">Bus Registration</h2>
+
+        <div class="form-group">
+            <input type="text" placeholder="Bus Number" formControlName="busNumber" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Vendor Name" formControlName="vendorName" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Source" formControlName="source" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Destination" formControlName="destination" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <input type="time" placeholder="Time of Boarding" formControlName="timeOfBoarding" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <input type="time" placeholder="Time of Dropping" formControlName="timeOfDropping" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <input type="date" placeholder="Date of Journey" formControlName="dateOfJourney" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <input type="number" placeholder="Total Seats" formControlName="totalSeats" class="form-input" required>
         </div>
 
-        <div formArrayName="dropOffPlaces">
-            @for (place of dropOffPlaces.controls; track $index) 
-            {
-                <div [formGroupName]="$index">
-                    <input type="text" formControlName="droppingPlace" placeholder="Drop Off Place">
-                    <input type="time" formControlName="droppingTime" placeholder="Drop Off Time">
-                    @if(place.get('droppingTime')?.hasError(('invalidDroppingTime')))
+        <div formArrayName="boardingPlaces" class="boarding-dropoff-container">
+            <h3 class="section-title">Boarding Places</h3>
+            
+            
+                @for (place of boardingPlaces.controls; track $index) {
+                    <div [formGroupName]="$index" class="boarding-place">
+                        <input type="text" formControlName="boardingPlace" placeholder="Boarding Place" class="form-input" required>
+                        <input type="time" formControlName="boardingTime" placeholder="Boarding Time" class="form-input" required>
+                        @if(place.get('boardingTime')?.hasError('invalidBoardingTime'))
+                        {
+                            <div class="error-message">
+                                Invalid Boarding Time. Must be after {{busRegistration.get('timeOfBoarding')?.value}} and before {{busRegistration.get('timeOfDropping')?.value}}
+                            </div>
+                        }
+                        @if(boardingPlaces.length>1)
+                        {
+                            <button (click)="removeBoardingPlace($index)" class="remove-btn">-</button>
+                        }
+                    </div>
+                }
+            
+            <button (click)="addBoardingPlace()" class="add-btn">+</button>
+        </div>
+
+        <div formArrayName="dropOffPlaces" class="boarding-dropoff-container">
+            <h3 class="section-title">Drop Off Places</h3>
+            @for (place of dropOffPlaces.controls; track $index) {
+                <div [formGroupName]="$index" class="dropoff-place">
+                    <input type="text" formControlName="droppingPlace" placeholder="Drop Off Place" class="form-input" required>
+                    <input type="time" formControlName="droppingTime" placeholder="Drop Off Time" class="form-input" required>
+                    @if(place.get('droppingTime')?.hasError('invalidDroppingTime'))
                     {
-                        Invalid Dropping Time. Must be before {{busRegistration.get('timeOfDropping')?.value}}
-                        and after {{busRegistration.get('timeOfBoarding')?.value}}
+                        <div class="error-message">
+                            Invalid Dropping Time. Must be before {{busRegistration.get('timeOfDropping')?.value}} and after {{busRegistration.get('timeOfBoarding')?.value}}
+                        </div>
                     }
-                    @if (dropOffPlaces.length>1) {
-                        <button (click)="removeDropOffPlace($index)">-</button>
+                    @if(dropOffPlaces.length>1)
+                    {
+                        <button (click)="removeDropOffPlace($index)" class="remove-btn">-</button>
                     }
                 </div>
             }
-            <button (click)="addDropOffPlace()">+</button>
+            <button (click)="addDropOffPlace()" class="add-btn">+</button>
         </div>
-        <input type="number" placeholder="Price in Rs. " formControlName="price" step="0.01">
-        <input type="number" placeholder="conductor" formControlName="conductor" hidden>
-        <button type="submit">Add a bus</button>
+
+        <div class="form-group">
+            <input type="number" placeholder="Price in Rs." formControlName="price" class="form-input" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <input type="number" placeholder="Conductor" formControlName="conductor" class="form-input" hidden>
+        </div>
+        
+        <button type="submit" class="submit-btn">Add Bus</button>
     </form>
 </div>

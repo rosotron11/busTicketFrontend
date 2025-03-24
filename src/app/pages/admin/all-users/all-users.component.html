@@ -1,47 +1,47 @@
-Total User:{{users.length}}<br>
-<button (click)="showConductors()">Show Conductors</button>
-<button (click)="showPassengers()">Show Passengers</button>
-<button (click)="showAll()">Show All</button>
-<table>
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Roles</th>
-        <th>Registered On</th>
-        <th>Actions</th>
-    </tr>
-@for (user of displayUsers; track $index) {
-    <tr>
-        <td>{{user.username}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.roles}}</td>
-        <td>{{user.registeredOn}}</td>
-        <td>
-            @if(user.roles=='conductor'){
-                <button (click)="showBus(user)">Show Bus</button>
-                <button (click)="showTicket(user)">Show Ticket</button>
-            }
-            @else if(user.roles=='passenger'){
-                <button (click)="showTicket(user)">Show Ticket</button>
-            }
-            <button (click)="delete(user)">Delete</button>
-        </td>
-    </tr>
-    @if(activatedBusPanel && selectedUser==user)
-    {
-        <tr>
-            <td colspan="5">
+<div class="user-management-container">
+    <div class="user-management-header">
+        <h2>Total Users: {{ users.length }}</h2>
+        <div class="user-actions">
+            <button class="action-btn" (click)="showConductors()">Show Conductors</button>
+            <button class="action-btn" (click)="showPassengers()">Show Passengers</button>
+            <button class="action-btn" (click)="showAll()">Show All</button>
+        </div>
+    </div>
+
+    <div class="user-list-header">
+        <div>Username</div>
+        <div>Email</div>
+        <div>Roles</div>
+        <div>Registered On</div>
+        <div>Actions</div>
+    </div>
+
+    <div class="user-list">
+        <div class="user-row" *ngFor="let user of displayUsers">
+            <div>{{ user.username }}</div>
+            <div>{{ user.email }}</div>
+            <div>{{ user.roles }}</div>
+            <div>{{ user.registeredOn }}</div>
+            <div class="actions">
+                <ng-container *ngIf="user.roles === 'conductor'">
+                    <button class="btn action-btn" (click)="showBus(user)">Show Bus</button>
+                    <button class="btn action-btn" (click)="showTicket(user)">Show Ticket</button>
+                </ng-container>
+                <ng-container *ngIf="user.roles === 'passenger'">
+                    <button class="btn action-btn" (click)="showTicket(user)">Show Ticket</button>
+                </ng-container>
+                <button class="btn delete-btn" (click)="delete(user)">Delete</button>
+            </div>
+            <div *ngIf="activatedBusPanel && selectedUser === user" class="panel">
                 <app-show-bus [user]="selectedUser" (closeChild)="closeBusPanel()"></app-show-bus>
-            </td>
-        </tr>
-    }
-    @if(activatedTicketPanel && selectedUser==user)
-    {
-        <tr>
-            <td colspan="5">
+            </div>
+        
+            <div *ngIf="activatedTicketPanel && selectedUser === user" class="panel">
                 <app-show-ticket [user]="selectedUser" (closeChild)="closeTicketPanel()"></app-show-ticket>
-            </td>
-        </tr>
-    }
-}
-</table>
+            </div>
+        </div>
+        
+    </div>
+
+    
+</div>

@@ -1,63 +1,67 @@
-<div>
+<div class="booking-container">
     <table>
-    <tr>
-        <td>{{activeBus.busNumber}}</td>
-        <td>{{activeBus.source}}</td>
-        <td>{{activeBus.destination}}</td>
-        <td>{{activeBus.timeOfBoarding}}</td>
-        <td>{{activeBus.timeOfDropping}}</td>
-        <td>{{activeBus.dateOfJourney}}</td>
-        <td>{{activeBus.totalSeats}}</td>
-        <td>{{activeBus.conductor.username}}</td>
-    </tr>
+        <tr>
+            <td><strong>Bus Number:</strong> {{activeBus.busNumber}}</td>
+            <td><strong>Source:</strong> {{activeBus.source}}</td>
+            <td><strong>Destination:</strong> {{activeBus.destination}}</td>
+        </tr>
+        <tr>
+            <td><strong>Boarding Time:</strong> {{activeBus.timeOfBoarding}}</td>
+            <td><strong>Dropping Time:</strong> {{activeBus.timeOfDropping}}</td>
+            <td><strong>Date:</strong> {{activeBus.dateOfJourney}}</td>
+        </tr>
+        <tr>
+            <td><strong>Total Seats:</strong> {{activeBus.totalSeats}}</td>
+            <td><strong>Conductor:</strong> {{activeBus.conductor.username}}</td>
+        </tr>
     </table>
-    <div>
-        <div>
-            @for (seats of seatArray; track $index) {
-                @for (seat of seats; track $index) {
-               <div (click)="selectSeat(seat)">
+
+    <h3>Select Your Seat</h3>
+    <div class="seat-container">
+        @for (seats of seatArray; track $index) {
+            @for (seat of seats; track $index) {
+                <div class="seat"
+                     [class.selected]="selectedSeats.includes(seat)"
+                     [class.booked]="bookedSeats.includes(seat)"
+                     (click)="selectSeat(seat)">
                     {{seat}}
-                    @if(selectedSeats.includes(seat))
+                </div>
+            }
+        }
+    </div>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="payBus(activeBus)" class="booking-form">
+        <div formArrayName="passengers">
+            @for (passenger of passengers.controls; track $index) {
+                <div [formGroupName]="$index">
+                    <input formControlName="name" placeholder="Full Name">
+                    <input formControlName="seatNo" placeholder="Seat Number" readonly>
+                    @if(passengers.length > 1)
                     {
-                        +Selected
-                    }
-                    @if(bookedSeats.includes(seat))
-                    {
-                        +Already Booked
+                        <button type="button" (click)="removePassenger($index)">-</button>
                     }
                 </div>
             }
-            }      
         </div>
-    </div>
-    <form [formGroup]="bookingForm" (ngSubmit)="payBus(activeBus)">
-        <div formArrayName="passengers">
-            @for (passenger of passengers.controls; track $index) {
-            <div [formGroupName]="$index">
-                    <input formControlName="name" placeholder="Full Name">
-                    <input formControlName="seatNo" placeholder="Seat Number" readonly>
-                    @if(passengers.length>1)
-                    {
-                        <button (click)="removePassenger($index)">-</button>
-                    }
-                    <br>
-            </div>
-            }
-        </div>
+
+        <label>Select Boarding Place:</label>
         <select formControlName="source">
             @for(place of activeBus.boardingPlaces; track $index)
             {
-                <option [value]="place['boardingPlace']" selected>{{place['boardingPlace']}} at {{place['boardingTime']}}</option>
+                <option [value]="place['boardingPlace']">{{place['boardingPlace']}} at {{place['boardingTime']}}</option>
             }
         </select>
+
+        <label>Select Drop-Off Place:</label>
         <select formControlName="destination">
             @for(place of activeBus.dropOffPlaces; track $index)
             {
-                <option [value]="place['droppingPlace']" selected>{{place['droppingPlace']}} at {{place['droppingTime']}}</option>
+                <option [value]="place['droppingPlace']">{{place['droppingPlace']}} at {{place['droppingTime']}}</option>
             }
         </select>
+
         <input type="email" placeholder="Email Address" formControlName="email">
-        Total Amount=Rs. {{amount}}
+        <p><strong>Total Amount:</strong> Rs. {{amount}}</p>
         <button type="submit">Book and Pay Later</button>
     </form>
 </div>

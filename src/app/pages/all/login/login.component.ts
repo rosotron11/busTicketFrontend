@@ -27,8 +27,7 @@ export class LoginComponent {
     if (this.loginForm.valid)
     {
     this.userService.loginUser(this.loginForm.value)
-    const redirectUrl = this.authService.redirectUrl ? this.authService.redirectUrl : "/search"
-    this.router.navigateByUrl(redirectUrl)
+    
     }
     else
     {

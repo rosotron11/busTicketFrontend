@@ -1,36 +1,22 @@
-<div>
-    <table>
-    <tr>
-        <th>Bus Number</th>
-        <th>Vendor Name</th>
-        <th>Source</th>
-        <th>Destination</th>
-        <th>Time Of Boarding</th>
-        <th>Time of Dropping</th>
-        <th>Total Time of Journey</th>
-        <th>Date of Journey</th>
-        <th>Seats</th>
-        <th>Actions</th>
-    </tr>
-    @if(buses.length<1){
-        <h1 style="align-self: center;">No Bus Found</h1>
+<div class="bus-list">
+    @if (buses.length < 1) {
+        <h1 class="no-bus">No Bus Found</h1>
     }
     @for (bus of buses; track $index) {
-        <tr>
-            <td>{{bus.busNumber}}</td>
-            <td>{{bus.vendorName}}</td>
-            <td>{{bus.source}}</td>
-            <td>{{bus.destination}}</td>
-            <td>{{bus.timeOfBoarding}}</td>
-            <td>{{bus.timeOfDropping}}</td>
-            <td>{{getTimeDifference(bus.timeOfBoarding,bus.timeOfDropping)}}</td>
-            <td>{{bus.dateOfJourney}}</td>
-            <td>{{bus.totalSeats-bus.bookedSeats}} out of {{bus.totalSeats}}</td>
-            <td><button type="submit" (click)="bookBus(bus)">Book</button></td>
-        </tr>
+        <div class="bus-card">
+            <h2>{{ bus.busNumber }} - {{ bus.vendorName }}</h2>
+            <p><strong>From:</strong> {{ bus.source }}</p>
+            <p><strong>To:</strong> {{ bus.destination }}</p>
+            <p><strong>Boarding:</strong> {{ bus.timeOfBoarding }}</p>
+            <p><strong>Dropping:</strong> {{ bus.timeOfDropping }}</p>
+            <p><strong>Journey Time:</strong> {{ getTimeDifference(bus.timeOfBoarding, bus.timeOfDropping) }}</p>
+            <p><strong>Date:</strong> {{ bus.dateOfJourney }}</p>
+            <p class="seats">Seats Left: {{ bus.totalSeats - bus.bookedSeats }} / {{ bus.totalSeats }}</p>
+            <button class="book-btn" (click)="bookBus(bus)">Book</button>
+        </div>
     }
-    </table>
 </div>
-@if (activeBooking) {<app-booking [activeBus]="activeBus"></app-booking>}
 
- 
+@if (activeBooking) { 
+    <app-booking [activeBus]="activeBus"></app-booking> 
+}

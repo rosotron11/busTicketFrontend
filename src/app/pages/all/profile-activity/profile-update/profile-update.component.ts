@@ -12,6 +12,7 @@ export class ProfileUpdateComponent implements OnInit{
   
   @Input() profile!: IUser;
   @Output() sendForm=new EventEmitter<any>()
+  @Output() sendCloseSignal=new EventEmitter<any>()
 
   updateForm:FormGroup= new FormGroup({
     id: new FormControl('',[Validators.required]),
@@ -28,5 +29,9 @@ export class ProfileUpdateComponent implements OnInit{
   sendSignalforUpdate()
   {
     this.sendForm.emit(this.updateForm)
+  }
+  closeUpdatePanel()
+  {
+    this.sendCloseSignal.emit();
   }
 }

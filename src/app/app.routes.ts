@@ -43,9 +43,15 @@ export const routes: Routes = [
         canActivate:[authGuard,conductorGuard]
     },
     {
-        path:"bus/:source/:destination/:doj",
-        component:BusComponent,
-        canActivate:[authGuard]
+        path:"search",
+        component:SearchComponent,
+        canActivate:[authGuard]  
+    },
+    {
+        path:"search/:source/:destination/:doj",
+        component:SearchComponent,
+        canActivate:[authGuard],
+        pathMatch:"full"
     },
     {
         path:"bus/create",

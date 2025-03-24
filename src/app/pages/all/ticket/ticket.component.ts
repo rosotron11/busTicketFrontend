@@ -42,11 +42,11 @@ export class TicketComponent implements OnInit{
     const selectElement = event.target as HTMLSelectElement;
     this.paymentGateway = selectElement.value;
   }
-  routeToPayment(amount:number,id:number)
+  routeToPayment(amount:number,id:number,ticketNumber:string)
   {
     localStorage.setItem('paymentProcess','true')
     this.router.navigateByUrl(`/${this.paymentGateway}`,
-      {state: {amount: amount,ticketId: id}})
+      {state: {amount: amount,ticketId: id,ticketNumber: ticketNumber}});
   }
 
 }

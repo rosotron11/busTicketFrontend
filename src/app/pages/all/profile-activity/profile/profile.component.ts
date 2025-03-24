@@ -42,13 +42,23 @@ export class ProfileComponent implements OnInit{
     console.log("Button clicked")
     this.userService.updateUser(id,form);
   }
-  showUpdate(id:number)
+  showUpdate()
   {
     this.activeUpdate=true
+    this.activeChange=false
   }
-  showChange(id:number)
+  showChange()
   {
     this.activeChange=true
+    this.activeUpdate=false
+  }
+  closeUpdate()
+  {
+    this.activeUpdate=false
+  }
+  closeChange()
+  {
+    this.activeChange=false
   }
   change(id:number,form:FormGroup)
   {
