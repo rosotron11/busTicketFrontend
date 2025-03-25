@@ -2,7 +2,7 @@
     <div class="user-management-header">
         <h2>Total Users: {{ users.length }}</h2>
         <div class="user-actions">
-            <button class="action-btn" (click)="showConductors()">Show Conductors</button>
+            <button class="action-btn" (click)="showConductors()">Show Operators</button>
             <button class="action-btn" (click)="showPassengers()">Show Passengers</button>
             <button class="action-btn" (click)="showAll()">Show All</button>
         </div>
@@ -24,7 +24,7 @@
                 <div>{{ user.roles }}</div>
                 <div>{{ user.registeredOn }}</div>
                 <div class="actions">
-                    @if (user.roles === 'conductor') {
+                    @if (user.roles === 'operator') {
                     <button class="btn action-btn" (click)="showBus(user)">Show Bus</button>
                     <button class="btn action-btn" (click)="showTicket(user)">Show Ticket</button>
                     }

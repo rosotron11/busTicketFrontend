@@ -1,33 +1,50 @@
-<div class="ticket-management">
-    <h2 class="title">🎟️ Passenger Tickets</h2>
+<div class="ticket-container">
+    <h2 class="title">Ticket Management</h2>
+    <div class="ticket-header">
+        <div>Ticket Number</div>
+        <div>Bus Number</div>
+        <div>Source</div>
+        <div>Destination</div>
+        <div>Date of Journey</div>
+        <div>Boarding Time</div>
+        <div>Dropping Time</div>
+        <div>Number of Seats</div>
+        <div>Booked On</div>
+        <div class="payment">Paid On</div>
+        <div>Amount</div>
+        <div>Ticket Status</div>
+    </div>
 
-    <div class="ticket-grid">
+    <div class="ticket-list">
         @for (ticket of tickets; track $index) {
-        <div class="ticket-card">
-            <div class="ticket-header">
-                <h3>Ticket #{{ ticket.ticketNumber }}</h3>
-                <span class="status" [ngClass]="{'paid': ticket.paymentStatus === 'Paid', 'unpaid': ticket.paymentStatus !== 'Paid'}">
-                    {{ ticket.paymentStatus }}
-                </span>
-            </div>
-
-            <div class="ticket-info">
-                <p><strong>Boarding:</strong> {{ ticket.source }} at {{ ticket.boardingTime }}</p>
-                <p><strong>Drop-Off:</strong> {{ ticket.destination }} at {{ ticket.droppingTime }}</p>
-                <p><strong>Passengers:</strong></p>
-                
-                <ul>
-                    @for (passenger of ticket.passengers; track $index) {
-                    <li>
-                        <strong>{{ passenger['name'] }}</strong> - Seat {{ passenger['seatNo'] }}
-                    </li>
+        <div class="ticket-item">
+            <div>{{ticket.ticketNumber}}</div>
+            <div>{{ticket.bus.busNumber}}</div>
+            <div>{{ticket.source}}</div>
+            <div>{{ticket.destination}}</div>
+            <div>{{ticket.dateOfJourney}}</div>
+            <div>{{ticket.boardingTime}}</div>
+            <div>{{ticket.droppingTime}}</div>
+            <div>{{ticket.passengers.length}}</div>
+            <div>{{ticket.bookingTime}}</div>
+            <div class="payment">
+                @if(ticket.paymentStatus=='Unpaid') {
+                    Unpaid
                 }
-                </ul>
+                @else {
+                    {{ticket.paymentTime}}
+                }
             </div>
-
-            <div class="ticket-actions">
-                <button class="cancel-btn" (click)="deleteTicket(ticket)">❌ Cancel Ticket</button>
+            <div>Rs. {{ticket.amount}}</div>
+            <div>
+                @if(ticket.paymentStatus=='Unpaid') {
+                    Booked
+                }
+                @else {
+                    Confirmed
+                }
             </div>
+            <div class="butn"><button class="cancel-btn" (click)="deleteTicket(ticket)">Cancel Ticket</button></div>
         </div>
         }
     </div>

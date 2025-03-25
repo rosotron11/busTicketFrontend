@@ -9,10 +9,7 @@
   }
   .nav-logo {
     display: flex;
-    justify-content: left;
-    align-items: left;
-    margin-left: -20px;
-    margin-top: -15px;
+    justify-content: start;
   }
   
   .logo {

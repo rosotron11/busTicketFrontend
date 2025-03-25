@@ -40,7 +40,7 @@ export class AllUsersComponent implements OnInit{
   }
   showConductors()
   {
-    this.displayUsers=this.users.filter(user=>user.roles==='conductor')
+    this.displayUsers=this.users.filter(user=>user.roles==='operator')
   }
   showAll()
   {

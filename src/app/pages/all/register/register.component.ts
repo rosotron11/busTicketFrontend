@@ -39,7 +39,7 @@ export class RegisterComponent {
       Validators.email,
       Validators.maxLength(50)]),
     roles: new FormControl('', [Validators.required,
-      Validators.pattern('^(passenger|conductor)$')
+      Validators.pattern('^(passenger|operator)$')
     ]),
   });
   submitForm() {
@@ -49,14 +49,7 @@ export class RegisterComponent {
       this.userService.createUser(this.registerForm.value);
       this.router.navigateByUrl('/search');
     } else {
-      const errors = this.registerForm.errors;
-      if (errors) {
-        for (const key in errors) {
-          if (errors.hasOwnProperty(key)) {
-            this.toastr.error(errors[key], 'Error');
-          }
-        }
-      }
+      this.toastr.error("Form Not Valid","Error")
     }
   }
   oldLogin() {

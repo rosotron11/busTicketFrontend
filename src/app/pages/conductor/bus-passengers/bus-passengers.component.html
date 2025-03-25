@@ -19,21 +19,23 @@
     <div class="passenger-list">
         @for (ticket of tickets; track $index) {
             <div class="passenger-item">
-                @for (passenger of ticket.passengers; track $index) {
-                    <div     class="passenger-row">
-                        <div>{{ passenger['name'] }}</div>
-                        <div>{{ passenger['seatNo'] }}</div>
-                        <div>{{ ticket.ticketNumber }}</div>
-                        <div>{{ ticket.source }}</div>
-                        <div>{{ ticket.destination }}</div>
-                        <div>{{ ticket.boardingTime }}</div>
-                        <div>{{ ticket.droppingTime }}</div>
-                        <div>{{ ticket.paymentStatus }}</div>
-                        <div class="actions">
-                            <button class="btn cancel-btn" (click)="deleteTicket(ticket)">Cancel Ticket</button>
-                        </div>
+                <div class="passenger-row">
+                    <div class="passenger-name">
+                        @for (passenger of ticket.passengers; track $index) {
+                            <div>{{ passenger['name'] }}</div>
+                            <div>{{ passenger['seatNo'] }}</div>
+                        }
                     </div>
-                }
+                    <div>{{ ticket.ticketNumber }}</div>
+                    <div>{{ ticket.source }}</div>
+                    <div>{{ ticket.destination }}</div>
+                    <div>{{ ticket.boardingTime }}</div>
+                    <div>{{ ticket.droppingTime }}</div>
+                    <div>{{ ticket.paymentStatus }}</div>
+                    <div class="actions">
+                        <button class="btn cancel-btn" (click)="deleteTicket(ticket)">Cancel Ticket</button>
+                    </div>
+                </div>
             </div>
         }
     </div>

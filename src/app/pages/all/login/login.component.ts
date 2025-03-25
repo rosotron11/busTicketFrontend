@@ -13,23 +13,24 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent {
 
+  loginForm!: FormGroup;
   constructor(private userService:UserService, private router:Router,
     private authService:AuthService, private toastr:ToastrService
   )
   {
-
+    this.loginForm= new FormGroup({
+      usernameOrEmail:new FormControl('',[Validators.required]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(30),
+        Validators.pattern(
+          '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
+        ),
+      ])
+    })
   }
-  loginForm:FormGroup= new FormGroup({
-    usernameOrEmail:new FormControl('',[Validators.required]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(30),
-      Validators.pattern(
-        '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
-      ),
-    ])
-  })
+  
 
   submitForm(){
     console.log(this.loginForm)
@@ -38,9 +39,9 @@ export class LoginComponent {
     this.userService.loginUser(this.loginForm.value)
     
     }
-    else
+    if (this.loginForm.controls['passenger'].invalid)
     {
-      this.toastr.error("Invalid Password","Error")
+      this.toastr.error("Atleast 1 Capital Letter, 1 Number & 1 Special Character",'Error')
     }
   }
   newSignUp()

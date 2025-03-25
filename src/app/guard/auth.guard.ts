@@ -19,7 +19,7 @@ export const conductorGuard: CanActivateFn = (route, state) => {
   const authService=inject(AuthService)
   const loggedData=localStorage.getItem('userDet');
   const userData=JSON.parse(loggedData!)
-  if(userData.roles=="conductor")
+  if(userData.roles=="operator")
   {
     return true;
   }
@@ -50,6 +50,19 @@ export const adminGuard: CanActivateFn = (route, state) => {
   }
   router.navigateByUrl("/home")
   return false;
+};
+
+export const notAdminGuard: CanActivateFn = (route, state) => {
+  const router=inject(Router)
+  const authService=inject(AuthService)
+  const loggedData=localStorage.getItem('userDet');
+  const userData=JSON.parse(loggedData!)
+  if(userData.roles=="admin")
+  {
+    return false;
+  }
+  router.navigateByUrl("/home")
+  return true;
 };
 
 export const paymentGuard: CanActivateFn = (route, state) => {

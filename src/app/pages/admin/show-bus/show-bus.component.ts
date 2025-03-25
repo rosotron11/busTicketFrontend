@@ -31,6 +31,7 @@ export class ShowBusComponent {
   }
   deleteBus(bus:IBus) {
     this.busService.deleteBus(bus.id);
+    this.buses = this.buses.filter(item => item.id != bus.id);
   }
   seePassengers(bus: IBus)
   {

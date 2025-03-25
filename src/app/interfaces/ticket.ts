@@ -17,4 +17,5 @@ export interface ITicket {
     amount: number;
     bookingUser: IUser;
     bus: IBus;
+    paymentGateway: string;
 }

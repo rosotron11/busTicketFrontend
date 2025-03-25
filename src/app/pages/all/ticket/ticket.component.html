@@ -29,11 +29,11 @@
             <div>{{ticket.bookingTime}}</div>
             <div class="payment">
                 @if(ticket.paymentStatus=='Unpaid') {
-                    <select [(ngModel)]="paymentGateway" (change)="paymentChange($event)">
+                    <select [(ngModel)]="ticket.paymentGateway" (change)="paymentChange($event)">
                         <option value="RamroPay" selected>RamroPay</option>
                         <option value="SajiloPay">SajiloPay</option>
                     </select>
-                    <button class="pay-btn" (click)="routeToPayment(ticket.amount, ticket.id, ticket.ticketNumber)">Pay Now Using {{paymentGateway}}</button>
+                    <button class="pay-btn" (click)="routeToPayment(ticket.amount, ticket.id, ticket.ticketNumber)">Pay Now Using {{ticket.paymentGateway}}</button>
                 }
                 @else {
                     {{ticket.paymentTime}}

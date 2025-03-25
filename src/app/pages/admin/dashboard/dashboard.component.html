@@ -19,7 +19,7 @@
           <div class="label">Paid & Confirmed</div>
         </div>
         <div class="stat-box">
-          <div class="value">${{totalStats.totalAmount || 0}}</div>
+          <div class="value">Rs. {{totalStats.totalAmount || 0}}</div>
           <div class="label">Total Payment Amount</div>
         </div>
       </div>
@@ -33,11 +33,11 @@
           <div class="label">Total Buses</div>
         </div>
         <div class="stat-box">
-          <div class="value">${{totalStats.averageAmountPerTicket || 0}}</div>
+          <div class="value">Rs. {{totalStats.averageAmountPerTicket || 0}}</div>
           <div class="label">Avg. Amount Per Ticket</div>
         </div>
         <div class="stat-box">
-          <div class="value">${{totalStats.averageAmountPerBus || 0}}</div>
+          <div class="value">Rs. {{totalStats.averageAmountPerBus || 0}}</div>
           <div class="label">Avg. Amount Per Bus</div>
         </div>
       </div>
@@ -70,11 +70,11 @@
             <div class="label">Paid & Confirmed</div>
           </div>
           <div class="stat-box">
-            <div class="value">${{dailyTicketStats.totalAmount || 0}}</div>
+            <div class="value">Rs. {{dailyTicketStats.totalAmount || 0}}</div>
             <div class="label">Total Amount</div>
           </div>
           <div class="stat-box">
-            <div class="value">${{dailyTicketStats.averageAmount || 0}}</div>
+            <div class="value">Rs. {{dailyTicketStats.averageAmount || 0}}</div>
             <div class="label">Avg. Amount Per Ticket</div>
           </div>
         </div>
@@ -123,11 +123,11 @@
             <div class="label">Avg. Journey Time</div>
           </div>
           <div class="stat-box">
-            <div class="value">${{dailyBusStats.totalAmount || 0}}</div>
+            <div class="value">Rs. {{dailyBusStats.totalAmount || 0}}</div>
             <div class="label">Total Amount</div>
           </div>
           <div class="stat-box">
-            <div class="value">${{dailyBusStats.averageAmount}}</div>
+            <div class="value">Rs. {{dailyBusStats.averageAmount}}</div>
             <div class="label">Avg. Amount Per Bus</div>
           </div>
         </div>

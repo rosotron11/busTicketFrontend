@@ -1,10 +1,10 @@
 <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
     <div class="period-selector">
         <button [class.active]="roles=='passenger'" (click)="switchRoles('passenger')" type="button">Passenger</button>
-        <button [class.active]="roles=='conductor'" (click)="switchRoles('conductor')" type="button">Conductor</button>
+        <button [class.active]="roles=='operator'" (click)="switchRoles('operator')" type="button">Operator</button>
       </div>
-    <input type="text" placeholder="username" name="username" formControlName="username">
-    <input type="password" placeholder="password" name="password" formControlName="password">
+    <input type="text" placeholder="username" name="username" formControlName="username" required>
+    <input type="password" placeholder="password" name="password" formControlName="password" required>
     <input type="email" placeholder="email" formControlName="email">
     <button type="submit">Register</button>
 </form>

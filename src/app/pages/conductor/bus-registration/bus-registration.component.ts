@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BusService } from '../../../services/bus.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-bus-registration',
   imports: [ReactiveFormsModule],
@@ -10,7 +11,7 @@ import { BusService } from '../../../services/bus.service';
 })
 export class BusRegistrationComponent implements OnInit{
 
-    constructor(private busService:BusService, private router:Router)
+    constructor(private busService:BusService, private router:Router, private toastr:ToastrService)
     {
       
     }    
@@ -72,7 +73,7 @@ export class BusRegistrationComponent implements OnInit{
         'Achham', 'Arghakhanchi', 'Baglung', 'Baitadi', 'Bajhang', 'Bajura', 'Banke', 'Bara', 'Bardiya', 'Bhaktapur', 
         'Bhojpur', 'Chitwan', 'Dadeldhura', 'Dailekh', 'Dang', 'Darchula', 'Dhading', 'Dhankuta', 'Dhanusha', 'Dolakha', 
         'Dolpa', 'Doti', 'Eastern Rukum', 'Gorkha', 'Gulmi', 'Humla', 'Ilam', 'Jajarkot', 'Jhapa', 'Jumla', 'Kailali', 
-        'Kalikot', 'Kanchanpur', 'Kapilvastu', 'Kaski', 'Kathmandu', 'Kavrepalanchok', 'Khotang', 'Lalitpur', 'Lamjung', 
+        'Kalikot', 'Kanchanpur', 'Kapilvastu', 'Kaski', 'Kathmandu', 'Kavre', 'Khotang', 'Lalitpur', 'Lamjung', 
         'Mahottari', 'Makwanpur', 'Manang', 'Morang', 'Mugu', 'Mustang', 'Myagdi', 'Nawalpur', 'Nuwakot', 'Okhaldhunga', 
         'Palpa', 'Panchthar', 'Parasi', 'Parbat', 'Parsa', 'Pyuthan', 'Ramechhap', 'Rasuwa', 'Rautahat', 'Rolpa', 
         'Rupandehi', 'Salyan', 'Sankhuwasabha', 'Saptari', 'Sarlahi', 'Sindhuli', 'Sindhupalchok', 'Siraha', 'Solukhumbu', 
@@ -120,7 +121,7 @@ export class BusRegistrationComponent implements OnInit{
       }
       else
       {
-        console.log("error")
+        this.toastr.error("Form Not Valid","Error")
       }
     }
 }

@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { AllTimeStats } from '../../../interfaces/response/AllTimeStats';
 import { DailyBusStats } from '../../../interfaces/response/DailyBusStats';
 import { DailyTicketStats } from '../../../interfaces/response/DailyTicketStats';
-import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

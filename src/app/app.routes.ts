@@ -57,10 +57,6 @@ export const routes: Routes = [
         canActivate:[authGuard]
     },
     {
-        path:"search",
-        component:SearchComponent
-    },
-    {
         path:"all-users",
         component:AllUsersComponent,
         canActivate:[authGuard,adminGuard]
@@ -71,7 +67,7 @@ export const routes: Routes = [
         canActivate:[authGuard,adminGuard]
     },
     {
-        path:"dashboard/conductor",
+        path:"dashboard/operator",
         component:ConductorDashboardComponent,
         canActivate:[authGuard,conductorGuard]
     },

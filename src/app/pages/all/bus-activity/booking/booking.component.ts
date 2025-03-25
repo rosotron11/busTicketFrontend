@@ -1,9 +1,10 @@
-import { Component, Input, NgModule, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, NgModule, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TicketService } from '../../../../services/ticket.service';
 import { FormArray, FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router} from '@angular/router';
 import { BusService } from '../../../../services/bus.service';
 import { IBus } from '../../../../interfaces/bus';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-booking',
@@ -23,7 +24,9 @@ throw new Error('Method not implemented.');
   seatArray: number[][] = [];
   bookedSeats:number[]=[]
   paymentGateway:string='';
-  constructor(private ticketService:TicketService, private router:Router, private busService:BusService)
+  constructor(private ticketService:TicketService, private router:Router, private busService:BusService,
+    private toastr:ToastrService
+  )
   {
   }
   ngOnInit(): void {
@@ -96,7 +99,7 @@ throw new Error('Method not implemented.');
   {
     if(this.bookedSeats.includes(num))
     {
-      window.alert("Seat Booked selected")
+      this.toastr.error("Seat Booked selected","Error")
     }
     else{
       const selectedIndex = this.selectedSeats.indexOf(num);
@@ -148,7 +151,7 @@ throw new Error('Method not implemented.');
     }
     else
     {
-      console.log("erorr in booking")
+      this.toastr.error("Error in Booking","Error")
     }
   }
 }

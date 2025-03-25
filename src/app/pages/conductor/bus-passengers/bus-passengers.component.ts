@@ -30,5 +30,6 @@ export class BusPassengersComponent implements OnInit{
   }
   deleteTicket(ticket:ITicket) {
     this.ticketService.deleteTicket(ticket.id);
+    this.tickets = this.tickets.filter(item => item.id != ticket.id);
   }
 }

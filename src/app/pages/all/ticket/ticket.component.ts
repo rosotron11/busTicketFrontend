@@ -13,7 +13,7 @@ import { ITicket } from '../../../interfaces/ticket';
   providers:[TicketService]
 })
 export class TicketComponent implements OnInit{
-  paymentGateway: string='';
+  paymentGateway:string=''
   tickets:ITicket[]=[]
   authService=inject(AuthService)
   constructor(private ticketService:TicketService, private router:Router)

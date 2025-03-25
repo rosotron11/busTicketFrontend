@@ -49,11 +49,23 @@
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     align-items: center;
+    justify-content: center;
+    text-align: center;
     transition: transform 0.3s ease;
 }
 
 .passenger-row:hover {
     transform: translateY(-3px);
+}
+
+.passenger-name
+{   
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: span 2;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .actions {
