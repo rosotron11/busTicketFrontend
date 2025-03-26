@@ -27,10 +27,10 @@ export class BusRegistrationComponent implements OnInit{
       timeOfBoarding: new FormControl('',[Validators.required]),
       timeOfDropping: new FormControl('',[Validators.required]),
       dateOfJourney: new FormControl('',[Validators.required]),
-      totalSeats: new FormControl('',[Validators.required]),
+      totalSeats: new FormControl('',[Validators.required,Validators.min(1)]),
       boardingPlaces: new FormArray([]),
       dropOffPlaces: new FormArray([]),
-      price:new FormControl('',[Validators.required]),
+      price:new FormControl('',[Validators.required,Validators.min(1)]),
       conductor: new FormControl('',[Validators.required])
     })
 
